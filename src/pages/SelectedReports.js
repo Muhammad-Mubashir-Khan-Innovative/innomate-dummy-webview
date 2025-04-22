@@ -256,6 +256,7 @@ const SelectedReports = () => {
   };
 
   const DemoHandleGenerateReport = async () => {
+    setIsDownloading(true);
     if (title !== "User Status report" && atmDevices.length === 0) {
       swal({
         icon: "warning",
@@ -263,6 +264,7 @@ const SelectedReports = () => {
         text: "Please select at least one ATM device to generate the report.",
         button: "Okay",
       });
+      setIsDownloading(false);
       return; // Stop further execution if no ATM device is selected, unless it's a user status report
     }
 
@@ -273,10 +275,11 @@ const SelectedReports = () => {
         text: "Please select a date range before generating the report.",
         button: "Okay",
       });
+      setIsDownloading(false);
       return; // Stop further execution if no date range is selected
     }
 
-    setIsDownloading(true);
+    //setIsDownloading(true);
     const reportData = {
       atmDevices,
       username,

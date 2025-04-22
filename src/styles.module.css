@@ -22,6 +22,7 @@
 .LoginContainer {
   background-color: #f5f7ff;
   height: 100vh;
+  min-height:100vh;
   justify-content: center;
   align-items: center;
 }
@@ -35,7 +36,7 @@
   align-items: center;
 }
 .LoginHeading {
-  margin-bottom: 20px;
+  /* margin-bottom: 5px; */
   font-family: 'Gilroy', sans-serif;
   font-size: 24px;
   font-weight: bold;
@@ -43,7 +44,7 @@
   display: flex;
   flex-direction: row;
   float: left;
-  margin-top: 2%;
+  margin-top: 1%;
   margin-left: 4%;
 }
 .Logintext {
@@ -56,7 +57,7 @@
   margin-left: 4%;
 }
 .LoginInputFieldArea {
-  margin-top: 20%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   width: 100%;

@@ -54,7 +54,7 @@ function Login() {
     window.handleFlag = (IsBiometricEnableReq) => {
       setisBiometricEnable(IsBiometricEnableReq);
     };
-    //window.ReactNativeWebView.postMessage("logout");
+    window.ReactNativeWebView.postMessage("logout");
     sessionStorage.removeItem("IsLoggedIn");
     setUser(null);
     window.handleFlag = window.handleFlag || (() => {});
@@ -68,7 +68,7 @@ function Login() {
       if (isBiometricEnable) {
         handleLoginSuccess();
       }
-      //window.ReactNativeWebView.postMessage("true");
+      window.ReactNativeWebView.postMessage("true");
     }
   }, [state.user]);
 

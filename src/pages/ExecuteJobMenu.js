@@ -72,6 +72,27 @@ const ExecuteJobMenu = () => {
     setJobCommands([]);
   };
 
+  const DemoExecuteJob = (JobID, deviceid) => {
+    //setLoading(true);
+    let message;
+            if (deviceid !== "null") {
+              message = `Your Job ${String(
+                JobID
+              )} has been successfully sent for execution on all underlying assigned devices.`;
+            } else {
+              message = `Your Job ${String(
+                JobID
+              )} has been successfully sent for execution on all underlying assigned devices.`;
+            }
+
+            navigate("/SuccessScreen", {
+              state: {
+                message,
+                heading: "Job Execution",
+              },
+            });
+  } 
+
   const executeJob = (JobID, deviceid) => {
     setLoading(true); // Set loading state to true when executing job
     const body = {
@@ -306,7 +327,7 @@ const ExecuteJobMenu = () => {
                     <Button
                       onClick={(e) => {
                         e.stopPropagation();
-                        executeJob(job.jobid.trim());
+                        DataFile.Demo ? DemoExecuteJob(job.jobid.trim()) : executeJob(job.jobid.trim())
                       }}
                       sx={{
                         backgroundColor: "#4197CB",

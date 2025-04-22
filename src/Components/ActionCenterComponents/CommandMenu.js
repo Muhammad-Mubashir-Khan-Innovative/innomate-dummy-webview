@@ -14,6 +14,7 @@ import { CircularProgress } from '@mui/material';
 import { AppContext } from '../../context.js';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Backdrop from '@mui/material/Backdrop';
+import DataFile from '../../Utilities/DataFile.js';
 
 
 const StyledMenu = styled((props) => (
@@ -95,7 +96,14 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
   }, []);
 
 
-
+  const DemoSendInService = () => {
+    navigate('/SuccessScreen', {
+      state: {
+        message: 'Your Device ID ' + String(deviceid) + ' has been sent to Bring in Service!',
+        heading: 'Bring In Service',
+      },
+    });
+  }
 
   const SendInService = () => {
     setSendInServiceloading(true);
@@ -214,6 +222,14 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
     }, 500);
   };
 
+  const DemoSendOutOfService = () => {
+    navigate('/SuccessScreen', {
+      state: {
+        message: 'Your Device ID ' + String(deviceid) + ' has been sent to be Out of Order.',
+        heading: 'Send Out Of Service',
+      },
+    });
+  }
 
   const SendOutOfService = () => {
     setSendOutOfServiceloading(true);
@@ -325,6 +341,14 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
     });
   };
 
+  const DemoReboot = () => {
+    navigate('/SuccessScreen', {
+      state: {
+        message: 'Your Device ID ' + String(deviceid) + ' has been Rebooted Successfully!',
+        heading: 'Reboot Device',
+      },
+    });
+  }
 
   const reboot = () => {
     setRebootloading(true);
@@ -513,14 +537,13 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
         >
           <div style={{ width: dimensions.width * 0.65 }}>
             Bring In Service
-          
           </div>
           <div>
           {SendInServiceloading ? (
               <CircularProgress size={20} sx={{ marginLeft: 1 }} />
             ) : (
               <Button
-                onClick={SendInService}
+                onClick={DataFile.Demo ? DemoSendInService : SendInService}
                 sx={{ backgroundColor: '#4197CB', textTransform: 'none' }}
                 variant="contained"
                 size="small"
@@ -544,7 +567,7 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
               <CircularProgress size={20} sx={{ marginLeft: 1 }} />
             ) : (
               <Button
-                onClick={reboot}
+                onClick={DataFile.Demo ? DemoReboot : reboot}
                 sx={{ backgroundColor: '#4197CB', textTransform: 'none' }}
                 variant="contained"
                 size="small"
@@ -568,7 +591,7 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
               <CircularProgress size={20} sx={{ marginLeft: 1 }} />
             ) : (
               <Button
-                onClick={SendOutOfService}
+                onClick={DataFile.Demo ? DemoSendOutOfService  : SendOutOfService }
                 sx={{ backgroundColor: '#4197CB', textTransform: 'none' }}
                 variant="contained"
                 size="small"
