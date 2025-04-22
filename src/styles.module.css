@@ -1,0 +1,274 @@
+.loader {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid #fff;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.LoginContainer {
+  background-color: #f5f7ff;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.LoginHeaderText {
+  padding-top: 30px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #131313;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.LoginHeading {
+  margin-bottom: 20px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #3e3e3e;
+  display: flex;
+  flex-direction: row;
+  float: left;
+  margin-top: 2%;
+  margin-left: 4%;
+}
+.Logintext {
+  top: 0%;
+  margin-top: -8%;
+  font-size: 14px;
+  font-weight: bold;
+  color: #3e3e3e;
+  display: flex;
+  margin-left: 4%;
+}
+.LoginInputFieldArea {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+}
+.InputField {
+  width: 90%;
+  margin-top: 10% !important;
+}
+.ForgotLink {
+  margin-top: 18%;
+  float: right;
+  margin-right: 7%;
+  font-size: 14;
+  font-weight: normal;
+  color: d;
+}
+.LoginButtonContainer {
+  height: 62px;
+  width: 224px;
+  margin-left: 25%;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  margin-bottom: 40px;
+}
+.DashboardHeading {
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: 0%;
+  margin-bottom: 2%;
+  font-family: 'Gilroy', sans-serif;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+.DashboardWelcomeText {
+  
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Gilroy', sans-serif;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  float: left;
+  margin-top: 4%;
+  margin-left: 2%;
+}
+.LastLoginText {
+  top: 0%;
+  margin-top: -2%;
+  font-size: 12px;
+  font-weight: normal;
+  font-family: 'Gilroy', sans-serif;
+  color: #ffffff;
+  display: flex;
+  margin-left: 2%;
+}
+.DashboardCard {
+  background-color: #f5f7fd;
+  width: 80%;
+  border-radius: 20px;
+  padding: 15px;
+  padding-top: 25px;
+  margin-top: 0px;
+  
+}
+.InfoCard {
+  background-color: #f5f7fd;
+  width: 90%;
+  border-radius: 20px;
+  padding: 15px;
+  margin-top: 0px !important;
+}
+.Centerdiv {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 8%;
+}
+.Heading {
+  margin: 0px;
+}
+.text {
+  margin: 0px;
+}
+.ItemInfoCardDashboard {
+  width: 45%;
+  border-radius: 15px !important;
+  line-height: 1.75;
+}
+.ItemDivDashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.InfoCardHeading {
+  font-size: 17px;
+  font-weight: bold;
+  color: #3e3e3E;
+  font-family: 'Gilroy', sans-serif;
+  margin-bottom: 4%;
+  margin-top: 5%;
+}
+.topbarmaindiv {
+  display: inline-flex;
+  width: 100%;
+  background-color: #4197cb;
+  margin-bottom: -1px;
+  padding-top: 5px;
+}
+.avatardivtopbar {
+  background-color: #4197cb;
+  width: 20px;
+  justify-content: center;
+  display: flex;
+  padding: 4%;
+  padding-bottom: 3%;
+  height: 50px;
+  width: 50px;
+}
+.atmlistitemmaindiv {
+  width: 92%;
+  background-color: #e1f0fa;
+  height: 70px;
+  margin-top: 0%;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.atmlisticon {
+  width: 23px;
+  height: 26px;
+  margin-top: 5px;
+}
+.atmlistheading {
+  font-family: 'Gilroy', sans-serif;
+  margin-left: 10px;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #131313;
+}
+.ATMListmainDiv {
+  /* background-color: #f5f5f5 !important; */
+  background-color: #f5f7fd !important;
+  height: 100vh;
+  margin-bottom: 70px;
+}
+.responsiveContainer{
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-height: 750px) {
+  .responsiveContainer {
+    padding-bottom: 10%;
+  }
+  .responsiveLoginInputFieldArea {
+    margin-top: 8%;
+  }
+  .responsivetext {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-height: 690px) {
+  .responsiveContainer {
+    padding-bottom: 20%;
+  }
+  .responsiveLoginInputFieldArea {
+    margin-top: 8%;
+  }
+  .responsivetext {
+    font-size: 10px !important;
+  }
+
+  .atm-form {
+    /* Overall form styling */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .atm-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .atm-form input,
+  .atm-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .atm-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
