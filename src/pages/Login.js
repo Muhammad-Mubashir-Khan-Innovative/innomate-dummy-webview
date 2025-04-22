@@ -97,7 +97,7 @@ function Login() {
 
   const Login = () => {
     setLoading(true);
-    apiRequest("POST", apiURL + "/Authentication/login", {
+    apiRequest("POST",apiURL+"/Authentication/login", {
       body: {
         UserID: username,
         Password: password,
