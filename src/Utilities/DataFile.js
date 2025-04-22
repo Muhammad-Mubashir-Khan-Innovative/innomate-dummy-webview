@@ -5,8 +5,8 @@ const DataFile = {
     // /Dashboard/GetATMsAgainstUserID
     DemoDashboardGetATMDataAgainstUser : [
     {
-        "DeviceID": "0146",
-        "BranchName": "Clifton",
+        "DeviceID": "ATM0146",
+        "BranchName": "Karachi",
         "DeviceBinState": "10000000000000",
         "IndicesOfOnes": "14",
         "Bit": 14,
@@ -17,8 +17,8 @@ const DataFile = {
         "DisplayOrder": 1
     },
     {
-        "DeviceID": "15185",
-        "BranchName": "Karachioffice",
+        "DeviceID": "ATM15185",
+        "BranchName": "Lahore",
         "DeviceBinState": "10000000000000",
         "IndicesOfOnes": "14",
         "Bit": 14,
@@ -29,61 +29,49 @@ const DataFile = {
         "DisplayOrder": 1
     },
     {
-        "DeviceID": "Abc123",
-        "BranchName": "Clifton",
-        "DeviceBinState": null,
-        "IndicesOfOnes": "0",
-        "Bit": null,
-        "Prio": null,
-        "MessageText": "No Message Found                                                                ",
-        "HierName": "QA ",
-        "CategoryText": "No Category Text",
-        "DisplayOrder": 0
-    },
-    {
         "DeviceID": "ATM0001",
-        "BranchName": "Karachi-Office",
+        "BranchName": "Karachi",
         "DeviceBinState": null,
         "IndicesOfOnes": "0",
-        "Bit": null,
+        "Bit": 5,
         "Prio": null,
-        "MessageText": "No Message Found                                                                ",
+        "MessageText": "Out of Cash                                                                ",
         "HierName": "Pakistan",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     },
     {
         "DeviceID": "ATM00021",
-        "BranchName": "ATM00021",
+        "BranchName": "Islamabad",
         "DeviceBinState": null,
         "IndicesOfOnes": "0",
-        "Bit": null,
+        "Bit": 13,
         "Prio": null,
-        "MessageText": "No Message Found                                                                ",
+        "MessageText": "Supervisory Mode",
         "HierName": "North",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     },
     {
         "DeviceID": "ATM12345",
-        "BranchName": "IPL-KHI",
+        "BranchName": "Karachi",
         "DeviceBinState": null,
         "IndicesOfOnes": "0",
-        "Bit": null,
+        "Bit": 13,
         "Prio": null,
-        "MessageText": "No Message Found                                                                ",
+        "MessageText": "Supervisory Mode",
         "HierName": "Pakistan",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     },
     {
         "DeviceID": "ATM123456",
-        "BranchName": "pakistan",
+        "BranchName": "Karachi",
         "DeviceBinState": null,
         "IndicesOfOnes": "0",
-        "Bit": null,
+        "Bit": 5,
         "Prio": null,
-        "MessageText": "No Message Found                                                                ",
+        "MessageText": "Out of Cash                                                               ",
         "HierName": "LHR",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
@@ -152,52 +140,12 @@ const DataFile = {
         {
             "UserID": null,
             "DeviceID": "ATM123456       ",
-            "StartTime": "2025-04-15T11:47:06",
-            "EndTime": "2025-04-15T11:56:05",
-            "Classif": 1,
-            "Pmid": "Journalprinter                               ",
-            "Status": "Closed",
-            "RepNumber": "205507"
-        },
-        {
-            "UserID": null,
-            "DeviceID": "ATM123456       ",
-            "StartTime": "2025-04-15T16:29:45",
-            "EndTime": "2025-04-15T16:34:31",
-            "Classif": 1,
-            "Pmid": "Outofcash                                    ",
-            "Status": "Closed",
-            "RepNumber": "205509"
-        },
-        {
-            "UserID": null,
-            "DeviceID": "ATM123456       ",
-            "StartTime": "2025-04-15T12:00:18",
-            "EndTime": "2025-04-15T16:05:27",
-            "Classif": 1,
-            "Pmid": "Journalprinter                               ",
-            "Status": "Closed",
-            "RepNumber": "205508"
-        },
-        {
-            "UserID": null,
-            "DeviceID": "ATM123456       ",
             "StartTime": "2025-03-26T13:32:06",
             "EndTime": null,
             "Classif": 1,
             "Pmid": "Receiptprinter                               ",
             "Status": "Opened",
             "RepNumber": "205504"
-        },
-        {
-            "UserID": null,
-            "DeviceID": "ATM123456       ",
-            "StartTime": "2025-04-11T16:05:47",
-            "EndTime": "2025-04-15T11:45:44",
-            "Classif": 1,
-            "Pmid": "Outofcash                                    ",
-            "Status": "Closed",
-            "RepNumber": "205506"
         }
     ],
 
@@ -206,8 +154,8 @@ const DataFile = {
     [
         [
             "Name: ATM123456",
-            "Branch Name: pakistan",
-            "Location: IPL-KHI",
+            "Branch Name: Clifton",
+            "Location: Karachi",
             "Model No: Details Not Found",
             "Status: Active",
             "Last Tnx Time: Details Not Found"
@@ -216,22 +164,22 @@ const DataFile = {
             "Cash Remaining1: 48000",
             "Denomination1: 500",
             "Reject1: 1",
-            "Filling Level1: 4.8",
+            "Filling Level1: 40.8",
             "Status1: Active",
             "Cash Remaining2: 55000",
             "Denomination2: 1000",
             "Reject2: 1",
-            "Filling Level2: 2.75",
+            "Filling Level2: 20.75",
             "Status2: Active",
             "Cash Remaining3: 500000",
             "Denomination3: 5000",
             "Reject3: 0",
-            "Filling Level3: 5",
+            "Filling Level3: 85",
             "Status3: Active",
             "Cash Remaining4: 100000",
             "Denomination4: 1000",
             "Reject4: 0",
-            "Filling Level4: 5",
+            "Filling Level4: 50",
             "Status4: Active"
         ],
         [
@@ -270,25 +218,25 @@ const DataFile = {
     ///CommandExecutionController/GetCassetteCounters
     DemoGetLiveCassetteCounters:
     [
-        "Cash Remaining1: 480",
-        "Denomination1: 5",
+        "Cash Remaining1: 48000",
+        "Denomination1: 500",
         "Reject1: 1",
-        "Filling Level1: 4.8",
+        "Filling Level1: 40.8",
         "Status1: Active",
-        "Cash Remaining2: 1000",
-        "Denomination2: 10",
+        "Cash Remaining2: 100000",
+        "Denomination2: 1000",
         "Reject2: 0",
-        "Filling Level2: 5",
+        "Filling Level2: 85",
         "Status2: Active",
-        "Cash Remaining3: 550",
-        "Denomination3: 10",
+        "Cash Remaining3: 55000",
+        "Denomination3: 1000",
         "Reject3: 1",
-        "Filling Level3: 2.75",
+        "Filling Level3: 20.75",
         "Status3: Active",
-        "Cash Remaining4: 5000",
-        "Denomination4: 50",
+        "Cash Remaining4: 5000000",
+        "Denomination4: 5000",
         "Reject4: 0",
-        "Filling Level4: 5",
+        "Filling Level4: 50",
         "Status4: Active"
     ],
 
@@ -309,7 +257,7 @@ const DataFile = {
         {
             "rownum": 2,
             "UserID": null,
-            "jobid": "Daily_ej          ",
+            "jobid": "Daily_EJ          ",
             "description": "c:\\proagent\\data\\jorunal.dat,$UPLOADDIR$Journal\\\\\\$ADDDEVICE$jorunal.dat",
             "commandno": "1",
             "deviceID": null,
@@ -331,35 +279,11 @@ const DataFile = {
             "timestamp": null
         },
         {
-            "rownum": 4,
-            "UserID": null,
-            "jobid": "Download          ",
-            "description": "$DOWNLOADDIR$Free_Test_Data_10.5MB_PDF.pdf",
-            "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
             "rownum": 5,
             "UserID": null,
             "jobid": "iEngage Banner    ",
             "description": "RBM Password Execution",
             "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 6,
-            "UserID": null,
-            "jobid": "iEngage Banner    ",
-            "description": "$DOWNLOADDIR$Check.zip",
-            "commandno": "2",
             "deviceID": null,
             "ResponseCode": null,
             "ResponseMessage": null,
@@ -415,102 +339,6 @@ const DataFile = {
             "timestamp": null
         },
         {
-            "rownum": 11,
-            "UserID": null,
-            "jobid": "jobretest         ",
-            "description": "$DOWNLOADDIR$Check.zip",
-            "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 12,
-            "UserID": null,
-            "jobid": "jobretestm        ",
-            "description": "$DOWNLOADDIR$Free_Test_Data_10.5MB_PDF.pdf",
-            "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 13,
-            "UserID": null,
-            "jobid": "m66               ",
-            "description": "$DOWNLOADDIR$Check.zip",
-            "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 14,
-            "UserID": null,
-            "jobid": "m66               ",
-            "description": "Reboot Device",
-            "commandno": "2",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 15,
-            "UserID": null,
-            "jobid": "m66               ",
-            "description": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqmmmmmmmmmmmmmmmmmmmmmmmmmm",
-            "commandno": "3",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 16,
-            "UserID": null,
-            "jobid": "m66               ",
-            "description": "C:\\,$UPLOADDIR$qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmaaaaaaaaaaa\\",
-            "commandno": "4",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 17,
-            "UserID": null,
-            "jobid": "mobtest           ",
-            "description": "$DOWNLOADDIR$Check.zip",
-            "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
-            "rownum": 18,
-            "UserID": null,
-            "jobid": "QA_JOB            ",
-            "description": "RBM Password Execution",
-            "commandno": "1",
-            "deviceID": null,
-            "ResponseCode": null,
-            "ResponseMessage": null,
-            "Result": null,
-            "timestamp": null
-        },
-        {
             "rownum": 19,
             "UserID": null,
             "jobid": "Zakat screens     ",
@@ -532,10 +360,10 @@ const DataFile = {
             "jobid": "Agent Update      ",
             "description": null,
             "commandno": "1",
-            "deviceID": "0146                                              ",
+            "deviceID": "ATM0146                                              ",
             "ResponseCode": null,
             "ResponseMessage": null,
-            "Result": "2",
+            "Result": "1",
             "timestamp": "2025-04-21T16:37:00"
         },
         {
@@ -544,10 +372,10 @@ const DataFile = {
             "jobid": "Agent Update      ",
             "description": null,
             "commandno": "1",
-            "deviceID": "15185                                             ",
+            "deviceID": "ATM15185                                             ",
             "ResponseCode": null,
             "ResponseMessage": null,
-            "Result": "2",
+            "Result": "1",
             "timestamp": "2025-04-21T16:37:00"
         },
         {
@@ -565,19 +393,19 @@ const DataFile = {
         {
             "rownum": 0,
             "UserID": null,
-            "jobid": "Agent Update      ",
+            "jobid": "iEngage Bannar",
             "description": null,
             "commandno": "1",
             "deviceID": "ATM0001                                           ",
             "ResponseCode": null,
             "ResponseMessage": null,
-            "Result": "2",
+            "Result": "1",
             "timestamp": "2025-04-21T16:37:00"
         },
         {
             "rownum": 0,
             "UserID": null,
-            "jobid": "Agent Update      ",
+            "jobid": "Daily_EJ",
             "description": null,
             "commandno": "1",
             "deviceID": "ATM00021                                          ",
@@ -595,7 +423,7 @@ const DataFile = {
             "deviceID": "ATM12345                                          ",
             "ResponseCode": null,
             "ResponseMessage": null,
-            "Result": "2",
+            "Result": "0",
             "timestamp": "2025-04-21T16:37:00"
         }
     ],

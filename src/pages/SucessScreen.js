@@ -1,5 +1,6 @@
 import * as React from 'react';
 import successimage from '../Sources/SuccessTick.png'
+import styles from "../styles.module.css";
 import Topbar from '../Components/TopBar';
 import Footer from '../Components/Footer';
 import { useState } from 'react';
@@ -10,6 +11,16 @@ import { useNavigate } from 'react-router-dom';
 const SuccessScreen = () =>{
   const navigate = useNavigate();
     const location = useLocation();
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000); // 2 seconds
+  
+      return () => clearTimeout(timer); // Cleanup on unmount
+    }, []);
     
     const { message,heading} = location.state || {};
     const [dimensions, setDimensions] = useState({
@@ -39,7 +50,17 @@ const SuccessScreen = () =>{
     return(
         <>
         <Topbar heading={heading } />
-<div style={{height:dimensions.height * 0.5}} >
+        {isLoading ? (
+              <div className={styles.loader}
+                style={{  border: "3px solid #4197cb",
+                  borderRadius: "50%",
+                  borderTop: "3px solid #fff",
+                  margin:"auto",
+                  marginTop:"200px" 
+              }}
+              ></div> // Show loader if loading
+            ) : (
+              <div style={{height:dimensions.height * 0.5}} >
     <div style={{marginTop:dimensions.height * 0.3, marginLeft: '40%',height:'84px',width:'84px'}}>
     <img src={successimage} />
     </div>
@@ -62,6 +83,8 @@ const SuccessScreen = () =>{
     </div>
 
 </div>
+            )}
+
 
 <Footer />
 </>

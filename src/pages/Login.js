@@ -41,8 +41,11 @@ function Login() {
   useEffect(() => {
     // Define a global function to receive data from React Native
     window.receiveCredentials = (credentials) => {
-      setusername(credentials.username);
-      setpassword(credentials.password);
+
+      //setusername(credentials.username);
+      setusername("msohail02")
+      //setpassword(credentials.password);
+      setpassword("admin")
       setTimeout(() => {
         document.getElementById("loginButton").click();
       }, 1000);
@@ -68,7 +71,7 @@ function Login() {
       if (isBiometricEnable) {
         handleLoginSuccess();
       }
-      window.ReactNativeWebView.postMessage("true");
+     window.ReactNativeWebView.postMessage("true");
     }
   }, [state.user]);
 
