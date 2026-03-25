@@ -25,14 +25,14 @@ const Reports = () => {
 
   // Data for multiple cards with unique headings
   const cardData = [
-    "Cash Outage Report",
-    "Downtime Report",
-    "Dispenser Outage Report",
-    "Power Outage Report",
-    "Supervisory Mode Report",
-    "Incident Escalation Report",
-    "User Status Report",
-    "Last Transaction Report",
+    "Cash Outage",
+    "Downtime",
+    "Dispenser Outage",
+    "Power Outage",
+    "Supervisory Mode",
+    "Incident Escalation",
+    "User Status",
+    "Last Transaction",
   ];
 
   const previousDate = getPreviousDate();
@@ -64,10 +64,10 @@ const Reports = () => {
                 onClick={() => handleCardClick(title)} // Card is now clickable
                 style={{
                   borderRadius: "15px",
-                  boxShadow: "0 8px 10px #3629B708",
+                  boxShadow: "0px 0px 40px 1px #5F65FF15",
                   padding: "10px",
-                  //height: "120px", // Reduced height
-                  minHeight:"120px",
+                  height: "120px", // Reduced height
+                  //minHeight:"100px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
@@ -96,11 +96,11 @@ const Reports = () => {
                       textDecoration: "none",
                       cursor: "pointer",
                       fontSize: "14px",
-                      color: "#1976d2",
+                      color: "#6F7373",
                       fontFamily: "Gilroy, sans-serif",
                     }}
                   >
-                    {title}
+                    {title} Summary
                   </Typography>
                   {/* <Typography
                     variant="body2"
@@ -118,13 +118,13 @@ const Reports = () => {
                   variant="body2"
                   style={{
                     textAlign: "left",
-                    fontSize: "12px",
-                    color: "#666",
+                    fontSize: "14px",
+                    color: "#979797",
                     fontFamily: "Gilroy, sans-serif",
                   }}
                 >
                   {/* Change the date for the last three reports */}
-                  {index >= cardData.length - 3 ? currentDate : previousDate}
+                  Till: {index >= cardData.length - 3 ? currentDate : previousDate}
                 </Typography>
               </Card>
             </Grid>

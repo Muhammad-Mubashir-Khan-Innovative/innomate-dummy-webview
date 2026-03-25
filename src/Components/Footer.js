@@ -2,8 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import Homeicon from '../Sources/Rectangle 74.png';
-import HomeFilledicon from '../Sources/HomeFilled.png';
+import Homeicon from '../Sources/Home.svg';
+import HomeFilledicon from '../Sources/Home_Selected.svg';
+import Incidenticon from '../Sources/Incident.svg';
+import IncidentFilledicon from '../Sources/Incident_Selected.svg';
+import Jobsicon from '../Sources/Jobs.svg';
+import JobsFilledicon from '../Sources/Jobs_Selected.svg';
+import Reportsicon from '../Sources/Reports.svg';
+import ReportsFilledicon from '../Sources/Reports_Selected.svg';
 import Logouticon from '../Sources/Group 20827.png';
 import apiRequest from '../Utilities/apiUtility.js'
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -21,7 +27,7 @@ const Footer = () => {
   const location = useLocation(); // Get the current route path
   const [value, setValue] = React.useState('/');
   const [IsUnreadNotifications,setIsUnreadNotifications]=React.useState(false);
-  const apiURL = process.env.REACT_APP_API_URL;
+    const apiURL = process.env.REACT_APP_API_URL;
   useEffect(() => {
     // Update the value based on the current route
     setValue(location.pathname);
@@ -34,6 +40,7 @@ const Footer = () => {
     // Cleanup interval on component unmount
     //return () => clearInterval(intervalId);
   }, [location.pathname]);
+
   const GetUserNotifications = () => {
     apiRequest('POST', apiURL + '/AlertsController/GetUserNotifications', {
       headers: {
@@ -67,17 +74,44 @@ const Footer = () => {
   };
 
   return (
-    <div>
+    <>
+    {/* Blur Background Layer */}
+    <div
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '140px',
+        backdropFilter: 'blur(40px)',
+        WebkitBackdropFilter: 'blur(40px)',
+        backgroundColor: '#F9FAFB75',
+        zIndex: 999,
+        pointerEvents: 'none', // allows clicks to pass through
+
+        maskImage: 'linear-gradient(to top, black 35%, black 70%, transparent 100%)',
+        WebkitMaskImage:
+          'linear-gradient(to top, black 0%, black 70%, transparent 100%)',
+      }}
+    />
+      
       <BottomNavigation
         showLabels
         sx={{
-          width: '100%',
+          width: '90%',
+           marginLeft:"5%",
+           paddingY:"40px",
+          //margin:"auto",
           position: 'fixed',
-          bottom: 0,
+          bottom: 15,
           height: '70px !important',
-          backgroundColor: '#7BB9DE',
-          borderRadius: '15px 15px 0px 0px',
-          left: 0,
+          backgroundColor: '#F3F3FF',
+          borderRadius: '20px',
+          border:"solid",
+          borderColor:"#5F65FF26",
+          borderWidth:"1px",
+          
+          // left: 0,
           zIndex: 1000, // Ensure it's above other elements
           boxSizing: 'border-box', // Prevent overflow due to padding or borders
           overflow: 'hidden' // Prevent horizontal scroll
@@ -86,93 +120,100 @@ const Footer = () => {
         onChange={handleChange}
       >
         <BottomNavigationAction
+          label="Home"
+          value="/dashboard"
           sx={{
             '& .MuiBottomNavigationAction-label': {
-              color: '#FFF', // Change label text color here
-              fontSize:'12px',
+              color: '#5F65FF', // Change label text color here
+              fontSize:'10px',
+              fontWeight: value === "/dashboard" ? "bold":"normal"
             },
             
             bottom: 15,
-            top: -5,
+            top: -2,
           }}
-          label="Dashboard"
-          value="/dashboard"
+
           icon={
             value === "/dashboard" ? (
-              <img src={HomeFilledicon} alt="icon" style={{ padding: '3%', width: '24px', height: '24px' }} />
+              <img src={HomeFilledicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px"  }} />
             
             ) : (
-              <img src={Homeicon} alt="icon" style={{ padding: '3%', width: '24px', height: '24px' }} />
+              <img src={Homeicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px"  }} />
+            )
+          }
+        />
+          <BottomNavigationAction
+          sx={{
+            '& .MuiBottomNavigationAction-label': {
+              color: '#5F65FF', // Change label text color here
+              fontSize:'10px',
+              fontWeight: value === "/Incidents" ? "bold":"normal"
+            },
+            
+            bottom: 15,
+            top: -2,
+            
+          }}
+          label="Incident View"
+          value="/Incidents"
+          icon={
+            value === "/Incidents" ? (
+              <img src={IncidentFilledicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px"  }} />
+            
+            ) : (
+              <img src={Incidenticon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px"  }} />
             )
           }
         />
 
-
-
-<BottomNavigationAction
-  sx={{
-    '& .MuiBottomNavigationAction-label': {
-      color: '#FFF', // Change label text color
-      fontSize: '12px',
-    },
-    bottom: 15,
-    top: -5,
-    position: 'relative', // Make sure the red dot is positioned relative to the icon
-  }}
-  label="Notifications"
-  value="/Notifications"
-  icon={
-    <div style={{ position: 'relative', display: 'inline-block' }}>
-      {value === "/Notifications" ? (
-        <img
-          src={bellIconFilled}
-          alt="icon"
-          style={{ padding: '3%', width: '26px', height: '24px' }}
-        />
-      ) : (
-        <img
-          src={bellIcon}
-          alt="icon"
-          style={{ padding: '3%', width: '20px', height: '24px' }}
-        />
-      )}
-      {/* Render the red dot conditionally */}
-      {IsUnreadNotifications && (
-        <span
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: '8px',
-            height: '8px',
-            backgroundColor: 'red',
-            borderRadius: '50%',
-            border: '1px solid white', // Optional: adds a white border to distinguish the dot
-          }}
-        />
-      )}
-    </div>
-  }
-/>
-
-
-
-
-        {/* <BottomNavigationAction
+        <BottomNavigationAction
           sx={{
             '& .MuiBottomNavigationAction-label': {
-              color: '#FFF', // Change label text color here
+              color: '#5F65FF', // Change label text color here
+              fontSize:'10px',
+              fontWeight: value === "/JobResults" ? "bold":"normal"
             },
+            
             bottom: 15,
-            top: -5,
+            top: -2,
           }}
-          label="Log Out"
-          value="/"
-          icon={<img src={Logouticon} alt="icon" style={{ padding: '3%', width: '19px', height: '22px' }} />}
-          onClick={logout}
-        /> */}
+          label="Job Result"
+          value="/JobResults"
+          icon={
+            value === "/JobResults" ? (
+              <img src={JobsFilledicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px"  }} />
+            
+            ) : (
+              <img src={Jobsicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px"  }} />
+            )
+          }
+        />
+
+           <BottomNavigationAction
+          sx={{
+            '& .MuiBottomNavigationAction-label': {
+              color: '#5F65FF', // Change label text color here
+              fontSize:'10px',
+                 fontWeight: value === "/Reports" ? "bold":"normal"
+            },
+            
+            bottom: 15,
+            top: -2,
+          }}
+          label="Reports"
+          value="/Reports"
+          icon={
+            value === "/Reports" ? (
+              <img src={ReportsFilledicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px" }} />
+            
+            ) : (
+              <img src={Reportsicon} alt="icon" style={{ padding: '3%', width: '20px', height: '20px', marginBottom:"8px" }} />
+            )
+          }
+        />
+
       </BottomNavigation>
-    </div>
+    </>
   );
 };
 

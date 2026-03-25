@@ -13,6 +13,7 @@ const SuccessScreen = () =>{
     const location = useLocation();
 
     const [isLoading, setIsLoading] = useState(true);
+       const [options,setOptions] = useState(false)
 
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -22,7 +23,8 @@ const SuccessScreen = () =>{
       return () => clearTimeout(timer); // Cleanup on unmount
     }, []);
     
-    const { message,heading} = location.state || {};
+    const [message,setMessage] = useState(location.state.message || {});
+    const [heading,setHeading] = useState(location.state.heading || {});
     const [dimensions, setDimensions] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -30,64 +32,86 @@ const SuccessScreen = () =>{
     
       useEffect(() => {
         const IsLoggedIn=sessionStorage.getItem("IsLoggedIn");
-      if(IsLoggedIn !="Y" || IsLoggedIn==undefined)
-        {
-          navigate("/");
-        
-        }
-        const handleResize = () => {
-          setDimensions({
-            width: window.innerWidth,
-            height: window.innerHeight,
-          });
-        };
+        if(IsLoggedIn !="Y" || IsLoggedIn==undefined)
+          {
+            navigate("/");
+          }
+
+          if(heading == "Report Generated"){
+            console.log("In change")
+            setOptions(true)
+          }
+
+          const handleResize = () => {
+            setDimensions({
+              width: window.innerWidth,
+              height: window.innerHeight,
+            });
+          };
     
+           const handleMessage = (event) => {
+          try {
+            
+            const data = JSON.parse(event.data);
+            console.log("Got data from React Native:", data);
+            if(data.message == "Downloaded"){
+              setOptions(false)
+              setMessage("Your file has been downloaded successfully.")
+            }
+          } catch (err) {
+            console.error("Invalid message", err);
+          }
+        };
+
         window.addEventListener('resize', handleResize);
+        document.addEventListener("message", handleMessage);
     
         // Cleanup event listener on component unmount
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+          document.removeEventListener("message", handleMessage);
+        }
       }, []);
-    return(
-        <>
-        <Topbar heading={heading } />
-        {isLoading ? (
-              <div className={styles.loader}
-                style={{  border: "3px solid #4197cb",
-                  borderRadius: "50%",
-                  borderTop: "3px solid #fff",
-                  margin:"auto",
-                  marginTop:"200px" 
-              }}
-              ></div> // Show loader if loading
-            ) : (
-              <div style={{height:dimensions.height * 0.5}} >
-    <div style={{marginTop:dimensions.height * 0.3, marginLeft: '40%',height:'84px',width:'84px'}}>
-    <img src={successimage} />
-    </div>
-    <div style={{width:'100%',  marginTop:'3%',display:'flex',justifyContent:'center',padding:'0px'}}>
-        <span
-  style={{
-    display: 'block', // Ensures the span behaves like a block element
-    maxWidth: '70%', // Limits the text width to 70% of the screen
-    fontSize: '20px',
-    fontFamily: 'Gilroy',
-    color: '#131313',
-    marginLeft: 'auto',
-    marginRight: 'auto', // Centers the text horizontally
-    textAlign: 'center', // Centers the text inside the span
-    wordWrap: 'break-word', // Ensures the text wraps to the next line if it exceeds the max width
-  }}
->
-  {message}
-</span>
-    </div>
 
-</div>
-            )}
+   return(
+        <div 
+          style={{backgroundColor:"#F9FAFB" 
+           }}
+        >
+        <Topbar heading={heading} />
+          <div style={{backgroundColor:"#FFFFFF", margin:"20px",paddingTop:"50px",marginTop:dimensions.height * 0.2,
+            borderRadius:"20px",  boxShadow: "0px 0px 40px 1px #5F65FF15"
+           }} >
+          
+             <div style={{ marginLeft: '40%',height:'84px',width:'84px'}}>
+            <img src={successimage} />
+            </div>
+          
+            <div style={{width:'100%',  marginTop:'7%',display:'flex',justifyContent:'center',padding:'0px'}}>
+                <span
+                  style={{
+                      display: 'block', // Ensures the span behaves like a block element
+                      maxWidth: '70%', // Limits the text width to 70% of the screen
+                      fontSize: '20px',
+                      fontFamily: 'Gilroy',
+                      color: '#1B1A1B',
+                      marginLeft: 'auto',
+                      marginRight: 'auto', // Centers the text horizontally
+                      textAlign: 'center', // Centers the text inside the span
+                      wordWrap: 'break-word', // Ensures the text wraps to the next line if it exceeds the max width
+                      marginBottom:'20px'
+                  }}
+                  >
+                  {message}
+                    {/* {"Report Downloading has started successfully. It will be saved in your device's download folder."} */}
+                  </span>  
+                    
+            </div>
+            
+          </div>
 
-
-<Footer />
-</>
+          <Footer />
+        </div>
     )
 };
 export default SuccessScreen;

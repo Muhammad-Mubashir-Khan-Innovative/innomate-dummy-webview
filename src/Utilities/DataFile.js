@@ -5,81 +5,105 @@ const DataFile = {
     // /Dashboard/GetATMsAgainstUserID
     DemoDashboardGetATMDataAgainstUser : [
     {
-        "DeviceID": "ATM0146",
+        "DeviceID": "ATM001",
         "BranchName": "Karachi",
         "DeviceBinState": "10000000000000",
         "IndicesOfOnes": "14",
         "Bit": 14,
         "Prio": 1,
         "MessageText": "Link Down",
-        "HierName": "123ggggggggggggggggggggggggggg",
+        "HierName": "Karachi",
         "CategoryText": "Offline - Not Connected",
         "DisplayOrder": 1
     },
     {
-        "DeviceID": "ATM15185",
+        "DeviceID": "ATM002",
         "BranchName": "Lahore",
         "DeviceBinState": "10000000000000",
         "IndicesOfOnes": "14",
         "Bit": 14,
         "Prio": 1,
         "MessageText": "Link Down",
-        "HierName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "HierName": "Lahore",
         "CategoryText": "Offline - Not Connected",
         "DisplayOrder": 1
     },
     {
-        "DeviceID": "ATM0001",
+        "DeviceID": "ATM003",
         "BranchName": "Karachi",
         "DeviceBinState": null,
         "IndicesOfOnes": "0",
-        "Bit": 5,
+        "Bit": null,
         "Prio": null,
-        "MessageText": "Out of Cash                                                                ",
-        "HierName": "Pakistan",
+        "MessageText": "No Message Found                                                            ",
+        "HierName": "Karachi",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     },
     {
-        "DeviceID": "ATM00021",
+        "DeviceID": "ATM004",
         "BranchName": "Islamabad",
         "DeviceBinState": null,
-        "IndicesOfOnes": "0",
+        "IndicesOfOnes": "1",
         "Bit": 13,
         "Prio": null,
         "MessageText": "Supervisory Mode",
-        "HierName": "North",
+        "HierName": "Islamabad",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     },
     {
-        "DeviceID": "ATM12345",
+        "DeviceID": "ATM005",
         "BranchName": "Karachi",
         "DeviceBinState": null,
-        "IndicesOfOnes": "0",
+        "IndicesOfOnes": "1",
         "Bit": 13,
         "Prio": null,
         "MessageText": "Supervisory Mode",
-        "HierName": "Pakistan",
+        "HierName": "Karachi",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     },
     {
         "DeviceID": "ATM123456",
         "BranchName": "Karachi",
-        "DeviceBinState": null,
+       "DeviceBinState": null,
         "IndicesOfOnes": "0",
+        "Bit": null,
+        "Prio": null,
+        "MessageText": "No Message Found                                                                ",
+        "HierName": "Karachi",
+        "CategoryText": "No Category Text",
+        "DisplayOrder": 0
+    }, 
+    {
+        "DeviceID": "ATM006",
+        "BranchName": "Karachi",
+        "DeviceBinState": null,
+        "IndicesOfOnes": "5",
         "Bit": 5,
         "Prio": null,
-        "MessageText": "Out of Cash                                                               ",
-        "HierName": "LHR",
+        "MessageText": "Out of Cash                                                                ",
+        "HierName": "Karachi",
+        "CategoryText": "No Category Text",
+        "DisplayOrder": 0
+    },
+    {
+        "DeviceID": "ATM007",
+        "BranchName": "Lahore",
+       "DeviceBinState": null,
+        "IndicesOfOnes": "5",
+        "Bit": 5,
+        "Prio": null,
+        "MessageText": "Out of Cash                                                                ",
+        "HierName": "Lahore",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
     }
 ],
 
     DemoLogin : {
-        username:"msohail02",
+        username:"Mubashir",
         password:"admin"
     },
 
@@ -92,9 +116,9 @@ const DataFile = {
         "DeviceID": "220e83df6e757bc0",
         "IsAccLocked": false,
         "Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im1zb2hhaWwwMiIsImp0aSI6ImM4Njc3NTE4LTA3ZDUtNDVmYS05MWJjLWZlNzU1NTNkNTRmMCIsIm5iZiI6MTc0NTIyNDQ1OSwiZXhwIjoxNzQ1MjI2MjU5LCJpYXQiOjE3NDUyMjQ0NTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0In0.4joLvoW7HCAI1QqC-TSmDl1eQFJukG0gNXKMYZ6cEgo",
-        "UserID": "msohail02",
-        "FirstName": "Muhammad Saud",
-        "LastName": "Sohail",
+        "UserID": "Mubashir",
+        "FirstName": "Mubashir Khan",
+        "LastName": "Khan",
         "PlayerID": null,
         "LastLogin": "2025-04-21T13:21:44.64",
         "IsDisabled": false,
@@ -110,7 +134,7 @@ const DataFile = {
         {
             "UserID": null,
             "DeviceID": "ATM12345        ",
-            "StartTime": "2025-03-20T15:07:46",
+            "StartTime": "2026-03-20T15:07:46",
             "EndTime": null,
             "Classif": 1,
             "Pmid": "Outofcash                                    ",
@@ -120,8 +144,8 @@ const DataFile = {
         {
             "UserID": null,
             "DeviceID": "ATM123456       ",
-            "StartTime": "2025-03-25T15:17:06",
-            "EndTime": "2025-04-15T11:45:44",
+            "StartTime": "2026-03-25T15:17:06",
+            "EndTime": "2026-04-15T11:45:44",
             "Classif": 1,
             "Pmid": "Journalprinter                               ",
             "Status": "Closed",
@@ -828,7 +852,16 @@ const DataFile = {
             "SentAt": "2025-04-14T18:00:25.743",
             "IsRead": true
         }
-    ]
+    ],
+
+    DemoFetchLastTransaction:{
+            "DeviceID": null,
+            "UserID": null,
+            "Trxn_type": "Withdrawal",
+            "Trxn_date": "3/18/2026",
+            "Trxn_time": "09:01:02 A.M.",
+            "Status": "Completed",
+        }
 }
 export default DataFile
 

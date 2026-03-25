@@ -2,6 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import styles from "../../styles.module.css";
+import CircleIcon from '@mui/icons-material/Circle';
 
 const JobResultsListItem = ({
   JobName,
@@ -14,11 +15,11 @@ const JobResultsListItem = ({
 
   const getButtonColor = () => {
     if (Result === "0") {
-      return "#FF0000"; // Red for Failed
+      return "#FF6671"; // Red for Failed
     } else if (Result === "1") {
-      return "#27E247"; // Green for Success
+      return "#17B26A"; // Green for Success
     } else if (Result === "2") {
-      return "#F0DC29"; // Yellow for queued
+      return "#FFBD66"; // Yellow for queued
     }
     return "#B0B0B0"; // Default gray color if no match (you can change this)
   };
@@ -37,7 +38,7 @@ const JobResultsListItem = ({
 
   return (
     <div
-      style={{ width: "92%", height: "90px", padding: '10px' }}
+      style={{ width: "92%", height: "100px", padding: '10px' }}
       className={styles.atmlistitemmaindiv}
     >
       <div
@@ -54,6 +55,8 @@ const JobResultsListItem = ({
             style={{
               fontSize: "12px",
               fontWeight: "lighter",
+              fontFamily: "Gilroy",
+              color:"#979797"
             }}
           >
             {Datetime ? new Intl.DateTimeFormat('en-US', {
@@ -72,8 +75,8 @@ const JobResultsListItem = ({
           <h3
             className={styles.atmlistheading}
             style={{
-              fontSize: "16px",
-              marginTop: "-12px",
+              fontSize: "13px",
+              marginTop: "-10px",
               fontFamily: "Gilroy",
             }}
           >
@@ -83,10 +86,11 @@ const JobResultsListItem = ({
         <div style={{ display: "flex", flexDirection: "row", height: "25px" }}>
           <h3
             className={styles.atmlistheading}
-            style={{
-              fontSize: "14px",
-              marginTop: "-12px",
+             style={{
+              fontSize: "13px",
+              marginTop: "-10px",
               fontFamily: "Gilroy",
+              color:"#979797"
             }}
           >
             Command No: {CommandNo}
@@ -97,7 +101,7 @@ const JobResultsListItem = ({
         <div style={{ display: "flex", flexDirection: "row" }}>
           <h4
             className={styles.atmlistheading}
-            style={{ marginTop: "-8px", fontSize: "12px" }}
+            style={{ marginTop: "-10px", fontSize: "13px" }}
           >
             <b>ATMID: {ATMID}</b>
           </h4>
@@ -108,31 +112,33 @@ const JobResultsListItem = ({
         style={{ width: "30%", marginTop: "0px" }}
       >
 
-<Button
-  variant="contained"
-  sx={{
-    float: "right",
-    textTransform: "none !important",
-    fontSize: "12px",
-    fontFamily: "Gilroy",
-    marginTop: "28px",
-    backgroundColor: getButtonColor(),
-    color: "white",
-    width: "100px",
-    "&:hover": {
-      backgroundColor: getButtonColor(), // Prevents color change on hover
-    },
-    "&:active": {
-      backgroundColor: getButtonColor(), // Prevents color change on click
-    },
-    "&:focus": {
-      backgroundColor: getButtonColor(), // Prevents color change on focus
-    },
-  }}
-  onClick={(e) => e.preventDefault()} // Prevents any action on click
->
-  {getButtonText()}
-</Button>
+        <Button
+          variant="text"
+          disableRipple
+          startIcon={<CircleIcon size={26} />}
+          sx={{
+            float: "right",
+            textTransform: "none !important",
+            fontSize: "14px",
+            fontFamily: "Gilroy",
+            marginTop: "28px",
+            //backgroundColor: getButtonColor(),
+            color: getButtonColor(),
+            width: "100px",
+            // "&:hover": {
+            //   backgroundColor: getButtonColor(), // Prevents color change on hover
+            // },
+            // "&:active": {
+            //   backgroundColor: getButtonColor(), // Prevents color change on click
+            // },
+            // "&:focus": {
+            //   backgroundColor: getButtonColor(), // Prevents color change on focus
+            // },
+          }}
+          onClick={(e) => e.preventDefault()} // Prevents any action on click
+        >
+          {getButtonText()}
+        </Button>
 
       </div>
     </div>

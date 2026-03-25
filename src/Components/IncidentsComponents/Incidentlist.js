@@ -55,7 +55,7 @@ const IncidentListComponent = () => {
     <div
       style={{
         display: "flex",
-        backgroundColor: "#F5F7FF",
+        backgroundColor: "#F9FAFB",
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
@@ -72,11 +72,12 @@ const IncidentListComponent = () => {
           width: "90%",
           marginBottom: "10px",
           marginTop: "20px",
+          color:"#999EA8",
           "& .MuiOutlinedInput-root": { borderRadius: "15px",backgroundColor:"white" },
         }}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position="start" sx={{color:"#999EA8"}}>
               <SearchIcon />
             </InputAdornment>
           ),
@@ -96,13 +97,14 @@ const IncidentListComponent = () => {
           <Button
             key={`${status}-${index}`} // Combine status and index for a unique key
             onClick={() => handleFilterChange(status)}
-            variant="contained"
+            variant="outlined"
             sx={{
               backgroundColor:
                 selected === status
-                  ? `${statusColors[status]}!important`
+                  ? "#5F65FF0F"
                   : "#FFFFFF",
-              color: selected === status ? "#fff" : "#000",
+              color: selected === status ? "#5F65FF" : "#1B1A1B",
+              borderColor: selected === status ? "#5F65FF" : "#E4E6E9",
               fontSize: "12px",
               height: "40px",
               width: "25%",
@@ -110,6 +112,7 @@ const IncidentListComponent = () => {
               margin: "5px",
               borderRadius: "8px",
               textTransform: "none",
+              
             }}
           >
             {status}
@@ -138,7 +141,7 @@ const IncidentListComponent = () => {
               height: "100%",
             }}
           >
-            <CircularProgress style={{ color: "#0000ff" }} />
+            <CircularProgress style={{ color: "#4197CB" }} />
           </Box>
         ) : (
           <>

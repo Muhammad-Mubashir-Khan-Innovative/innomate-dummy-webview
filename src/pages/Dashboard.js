@@ -19,8 +19,8 @@ import servericon from "../Sources/server_icon 1.png";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context.js";
 import { ContinuousColorLegend } from "@mui/x-charts";
-import Datafile from "../Utilities/DataFile.js"
-import DataFile from "../Utilities/DataFile.js";
+import DataFile from "../Utilities/DataFile.js"
+
 
 const listItems = [
   {
@@ -71,10 +71,12 @@ function Dashboard() {
     useContext(AppContext);
   const navigate = useNavigate(); // Hook for navigation
   const apiURL = process.env.REACT_APP_API_URL;
-  const LinkDownBit = process.env.REACT_APP_LINKDOWNBIT;
-  const SupervisoryBit = process.env.REACT_APP_SUPERVISORYBIT;
+  const LinkDownBit = process.env.REACT_APP_LINKDOWNBIT || 14;
+  const SupervisoryBit = process.env.REACT_APP_SUPERVISORYBIT || 13;
   const [loading, setLoading] = useState(true);
   const [ATMListData, setATMListData] = useState([]);
+  const messages = ["Fetching Data", "Optimizing Data", "Populating Data"];
+  const [messageIndex, setMessageIndex] = useState(0);
 
   const handleNavigation = (Route, ATMStatusFilter) => () => {
     navigate(Route, {
@@ -83,10 +85,22 @@ function Dashboard() {
       },
     }); // Navigate to the given path
   };
+
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  useEffect(() => {
+    if (messageIndex >= messages.length - 1) return; // stop at last message
+
+    const timer = setTimeout(() => {
+      setMessageIndex((prev) => prev + 1);
+    }, 15000); // change every 15s
+
+    return () => clearTimeout(timer);
+  }, [messageIndex]);
+
   useEffect(() => {
     const IsLoggedIn = sessionStorage.getItem("IsLoggedIn");
     if (IsLoggedIn != "Y" || IsLoggedIn == undefined) {
@@ -115,13 +129,12 @@ function Dashboard() {
   }, []);
 
   const DemoDashboardGetATMDataAgainstUser = () => {
-    const data = Datafile.DemoDashboardGetATMDataAgainstUser
+    const data = DataFile.DemoDashboardGetATMDataAgainstUser
+    console.log(data);
     setATMList(data);
     setATMListData(data);
     setLoading(false);
-
-
-  }
+ }
 
   const GetATMDataAgainstUser = () => {
     apiRequest("POST", apiURL + "/Dashboard/GetATMsAgainstUserID", {
@@ -258,11 +271,11 @@ function Dashboard() {
 
   return (
     <>
-      <Topbar heading={"Dashboard"} />
+      <Topbar heading={"Home"} />
       <div
         className={styles.responsiveContainer}
         style={{
-          backgroundColor: "#4197CB",
+          backgroundColor: "#F9FAFB",
           height: "100%",
           display: "flex",
           flexDirection: "column",
@@ -273,12 +286,14 @@ function Dashboard() {
           <div
             style={{
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
               height: "100vh",
             }}
           >
-            <CircularProgress size={60} style={{ color: "#fff" }} />{" "}
+            <CircularProgress size={60} style={{ color: "#5F65FF" }} />
+           <p style={{color:"#5F65FF", fontSize:"20px"}}>{messages[messageIndex]}</p>
             {/* Spinner */}
           </div>
         ) : (
@@ -291,6 +306,7 @@ function Dashboard() {
             overflowY: "auto",
           }}
           >
+
             <div
               style={{
                 display: "flex",
@@ -324,6 +340,29 @@ function Dashboard() {
                     : null}
                 </p>
               </div>
+              {/* <div
+                style={{
+                  textDecorationStyle:"underline",
+                  marginRight: "25px",
+                  marginBottom:"-10px",
+                  color: "white",
+                  fontSize: "14px",
+                  display: "flex",          // enable flexbox
+                  justifyContent: "right", // horizontal alignment
+                  alignItems: "center",     // vertical alignment
+                }}
+                onClick={ () => {GetATMDataAgainstUser()}}
+              >
+                
+                {reload ? 
+                  <CircularProgress size={30} style={{ color: "#fff" }} />
+                :
+                <>
+                  <img src={refresh} style={{ marginRight: "6px" }} />
+                  <span style={{ textDecoration: "underline" }}>Refresh</span>
+                </>}
+              </div> */}
+
             </div>
 
             {/* //Code for ATM Summary */}
@@ -333,19 +372,20 @@ function Dashboard() {
                 direction="column"
                 spacing={2}
               >
-                <p className={styles.InfoCardHeading}>ATM SUMMARY</p>
+                <p className={styles.InfoCardHeading}>Device Summary</p>
                 <Stack className={styles.InfoCard} direction="row" spacing={2}>
                   <InfoCard
+                    style ={{alignItems:"center", paddingTop:"20px"}}
                     onClick={handleNavigation("/ATMList", "All")}
                     image={DashboardCardImage1}
-                    background={"#5BC0BE"}
+                    background={"#81D0EA"}
                     heading={ATMListData?.length}
-                    text={"Total ATMs"}
+                    text={"Total Devices"}
                   />
                   <InfoCard
                     onClick={handleNavigation("/ATMList", "In Service")}
                     image={DashboardCardImage2}
-                    background={"#28A745"}
+                    background={"#A6CF46"}
                     heading={
                       ATMListData?.filter((item) => item.IndicesOfOnes === "0")
                         ?.length
@@ -357,7 +397,7 @@ function Dashboard() {
                   <InfoCard
                     onClick={handleNavigation("/ATMList", "Linkdown")}
                     image={DashboardCardImage3}
-                    background={"#DC3545"}
+                    background={"#FF6671"}
                     heading={
                       ATMListData?.filter(
                         (item) => item.Bit === parseInt(LinkDownBit)
@@ -368,7 +408,7 @@ function Dashboard() {
                   <InfoCard
                     onClick={handleNavigation("/ATMList", "Comp Down")}
                     image={DashboardCardImage4}
-                    background={"maroon"}
+                    background={"#FFBD66"}
                     heading={
                       state.ATMList?.filter(
                         (item) => item.Prio > 2 && item.Prio < 8
@@ -391,7 +431,7 @@ function Dashboard() {
                   style={{ fontWeight: "bold" }}
                   className={styles.InfoCardHeading}
                 >
-                  ATM AVAILABILITY SUMMARY
+                  Device Availability Summary
                 </p>
                 <CircularRangeWithTextLink
                   min={0}
@@ -401,51 +441,24 @@ function Dashboard() {
                       (item) => item.Bit == parseInt(SupervisoryBit)
                     )?.length
                   }
+                  // value = {15}
                   heading={"Supervisory"}
-                  text={"To view the details, click here"}
+                  text={"To View The Details, Click Here"}
                   status={"Supervisory"}
-                  progressbarcolor={"#FE4646"}
+                  progressbarcolor={"#FF6671"}
                 />
                 <CircularRangeWithTextLink
                   min={0}
                   max={state?.ATMList?.length}
                   value={ATMListData?.filter((item) => item.Bit == 5)?.length}
                   heading={"Out of Cash"}
-                  text={"To view the details, click here"}
+                  text={"To View The Details, Click Here"}
                   status={"Out of Cash"}
                   progressbarcolor={"#FFA84A"}
                 />
               </Stack>
             </div>
-
-                    {/* //Code for System Monitoring
-                        <div className={styles.Centerdiv} style={{marginBottom:'20%'}} >
-                  <Stack className={styles.DashboardCard} direction="column" spacing={2}>
-                    <p className={styles.InfoCardHeading}>SYSTEM MONITORING</p>
-                    <Divider variant="middle" />
-                    <nav aria-label="main mailbox folders">
-                <List>
-                {listItems.map(item => {
-                const IconComponent = item.icon; // Get the icon component dynamically
-                return (
-                  <ListItem sx={{paddingRight:'5px'}} key={item.id}>
-                    <ListItemIcon>
-                    <Avatar  sx={{ backgroundColor:'#4197CB',height:45,width:45 }}>
-                    <img src={IconComponent}/>
-                    </Avatar>
-                    
-                    </ListItemIcon>
-                    <ListItemText primary={item.text} />
-                    <Chip sx={{borderRadius:'5px',backgroundColor:getChipColor(item.label),height:'32px',width:'100px',fontFamily:'Gilroy',fontSize:'13px'}} label={item.label} color="primary" />
-                  </ListItem>
-                );
-              })}
-                </List>
-              </nav>
-                  </Stack>
-                </div> */}
-
-            {/*    //Code for Pie chart  */}
+           {/*    //Code for Pie chart  */}
 
             <IncidentDetailsComponent />
             <div style={{height:"20vh"}}></div>

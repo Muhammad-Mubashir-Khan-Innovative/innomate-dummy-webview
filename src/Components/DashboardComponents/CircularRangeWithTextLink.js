@@ -18,17 +18,28 @@ const CircularRangeWithTextLink =({min,max,value,heading,text,status,progressbar
     };
     return (
         <>
-<span style={{display:'inline-flex'}}>
-<CircularProgressWithRange min={min} max={max} value={value}  color={progressbarcolor}  />
-<span style={{width:'100%'}}>
-<h3 style={{fontFamily:['Gilroy','sans-serif'],fontWeight:'normal',marginLeft:'5%',marginTop:'10%',marginBottom:'1%',color:"#243465"}}>{heading}</h3>
-<a onClick={handleNavigation('/ATMList',status)} style={{fontFamily:['Gilroy','sans-serif'],fontSize:'12px',marginLeft:'5%',marginTop:'3%',color:'#848A9C',textDecoration:"none"}} href='#'  rel="noopener noreferrer">{text}
-</a>
-</span>
-<NavigateNextIcon onClick={handleNavigation('/ATMList',status)} sx={{marginTop:'10%'}}/>
-</span>
- <Divider variant="middle" />
- </>
+            <span style={{display:'inline-flex'}}>
+              <CircularProgressWithRange 
+                min={min} 
+                max={max} 
+                value={value}  
+                color={progressbarcolor}  
+               
+              />
+                <span style={{width:'100%',marginLeft:'5%'}}>
+                    <h3 style={{fontFamily:['Gilroy','sans-serif'],fontWeight:'normal',marginTop:"2%",marginBottom:'1%',color:"#1B1A1B"}}>
+                      {heading}
+                      </h3>
+                    <a onClick={handleNavigation('/ATMList',status)} 
+                      style={{fontFamily:['Gilroy','sans-serif'],fontSize:'14px',color:'#999EA8',textDecoration:"none"}} 
+                      href='#'  
+                      rel="noopener noreferrer">{text}
+                    </a>
+                </span>
+              <NavigateNextIcon onClick={handleNavigation('/ATMList',status)} sx={{marginTop:'4%',color:'#3E3E3E'}}/>
+            </span>
+            <Divider variant="middle" />
+        </>
     );
 };
 export default CircularRangeWithTextLink;

@@ -21,7 +21,7 @@ const JobResultListComponent = ({ selectedFilter }) => {
   const { state, setJobResults, setUser } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const apiURL = process.env.REACT_APP_API_URL;
+   const apiURL = process.env.REACT_APP_API_URL;
   const [selected, setSelected] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -135,7 +135,7 @@ const JobResultListComponent = ({ selectedFilter }) => {
     <div
       style={{
         display: "flex",
-        backgroundColor: "#F5F7FF",
+        backgroundColor: "#F9FAFB",
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
@@ -163,7 +163,7 @@ const JobResultListComponent = ({ selectedFilter }) => {
         }}
       />
 
-      {/* Status Filter Buttons */}
+      {/* Status Filter Buttons
       <div
         style={{
           display: "inline-flex",
@@ -195,8 +195,43 @@ const JobResultListComponent = ({ selectedFilter }) => {
             {status}
           </Button>
         ))}
-      </div>
+      </div> */}
 
+      {/* Status Filter Buttons */}
+      <div
+        style={{
+          display: "inline-flex",
+          width: "90%",
+          overflowX: "auto",
+          scrollBehavior: "smooth",
+        }}
+      >
+        {["All", "Completed", "Queued", "Failed"].map((status, index) => (
+          <Button
+            key={`${status}-${index}`} // Combine status and index for a unique key
+            onClick={() => handleFilterChange(status)}
+            variant="outlined"
+            sx={{
+              backgroundColor:
+                selected === status
+                  ? "#5F65FF0F"
+                  : "#FFFFFF",
+              color: selected === status ? "#5F65FF" : "#1B1A1B",
+              borderColor: selected === status ? "#5F65FF" : "#E4E6E9",
+              fontSize: "12px",
+              height: "40px",
+              width: "25%",
+              minWidth: "20%",
+              margin: "5px",
+              borderRadius: "8px",
+              textTransform: "none",
+              
+            }}
+          >
+            {status}
+          </Button>
+        ))}
+      </div>
       {/* Conditionally show loader or data */}
       {loading ? (
         <Box
@@ -234,7 +269,9 @@ const JobResultListComponent = ({ selectedFilter }) => {
             </Box>
           ) : (
             <>
-              {filteredItems.map((item, index) => (
+              {filteredItems
+              .filter(item => item.commandno === '1')
+              .map((item, index) => (
                 <ListItem
                   key={`${item.deviceID}-${item.jobid}-${index}`} // Combining `deviceID`, `jobid`, and `index` to ensure uniqueness
                   sx={{

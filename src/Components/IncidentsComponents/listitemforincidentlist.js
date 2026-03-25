@@ -5,6 +5,7 @@ import styles from "../../styles.module.css";
 import atmicon from "../../Sources/atmicon.png";
 import locationicon from "../../Sources/locationicon.png";
 import CommandMenu from "../ActionCenterComponents/CommandMenu";
+import CircleIcon from '@mui/icons-material/Circle';
 
 const IncidentListItem = ({
   deviceid,
@@ -23,9 +24,9 @@ const IncidentListItem = ({
 
   const getButtonColor = () => {
     if (status === "Closed") {
-      return "rgb(87, 205, 45)";
+      return "#17B26A";
     } else if (status === "Opened") {
-      return "rgb(255, 0, 0)";
+      return "#FF6671";
     }
     return buttonColor;
   };
@@ -34,7 +35,7 @@ const IncidentListItem = ({
 
   return (
     <div
-      style={{ width:"92%",height:"90px",padding:'10px' }}
+      style={{ width:"92%",height:"100px",padding:'10px' }}
       className={styles.atmlistitemmaindiv}
     >
       <div
@@ -49,8 +50,10 @@ const IncidentListItem = ({
           <h4
             className={styles.atmlistheading}
             style={{
-              fontSize: "12px",
+              fontSize: "13px",
               fontWeight: "lighter",
+              fontFamily: "Gilroy",
+              color:"#979797"
             }}
           >
           {date ? new Intl.DateTimeFormat('en-US', {
@@ -69,8 +72,8 @@ const IncidentListItem = ({
           <h3
             className={styles.atmlistheading}
             style={{
-              fontSize: "16px",
-              marginTop: "-12px",
+              fontSize: "13px",
+              marginTop: "-10px",
               fontFamily: "Gilroy",
             }}
           >
@@ -81,9 +84,10 @@ const IncidentListItem = ({
           <h3
             className={styles.atmlistheading}
             style={{
-              fontSize: "14px",
-              marginTop: "-12px",
+              fontSize: "13px",
+              marginTop: "-10px",
               fontFamily: "Gilroy",
+              color:"#979797"
             }}
           >
             Escalation Level: {EscalationLevel}
@@ -94,7 +98,7 @@ const IncidentListItem = ({
         <div style={{ display: "flex", flexDirection: "row" }}>
           <h4
             className={styles.atmlistheading}
-            style={{ marginTop: "-8px", fontSize: "12px" }}
+            style={{ marginTop: "-10px", fontSize: "13px" }}
           >
             <b>ATMID: {deviceid}</b>
           </h4>
@@ -105,31 +109,33 @@ const IncidentListItem = ({
         style={{ width: "30%", marginTop:  "0px" }}
       >
  
- <Button
-  variant="contained"
-  sx={{
-    float: "right",
-    textTransform: "none !important",
-    fontSize: "12px",
-    fontFamily: "Gilroy",
-    marginTop: "28px",
-    backgroundColor: getButtonColor(),
-    color: "white",
-    width: "100px",
-    "&:hover": {
-      backgroundColor: getButtonColor(), // Prevents color change on hover
-    },
-    "&:active": {
-      backgroundColor: getButtonColor(), // Prevents color change on click
-    },
-    "&:focus": {
-      backgroundColor: getButtonColor(), // Prevents color change on focus
-    },
-  }}
-  onClick={(e) => e.preventDefault()} // Prevents any action on click
->
-  {status}
-</Button>
+        <Button
+          variant="text"
+          disableRipple
+          startIcon={<CircleIcon size={26} />}
+          sx={{
+            float: "right",
+            textTransform: "none !important",
+            fontSize: "14px",
+            fontFamily: "Gilroy",
+            marginTop: "28px",
+          // backgroundColor: getButtonColor(),
+            color: getButtonColor(),
+            width: "100px",
+            // "&:hover": {
+            //   backgroundColor: getButtonColor(), // Prevents color change on hover
+            // },
+            // "&:active": {
+            //   backgroundColor: getButtonColor(), // Prevents color change on click
+            // },
+            // "&:focus": {
+            //   backgroundColor: getButtonColor(), // Prevents color change on focus
+            // },
+          }}
+          onClick={(e) => e.preventDefault()} // Prevents any action on click
+        >
+          {status}
+        </Button>
       </div>
     </div>
   );

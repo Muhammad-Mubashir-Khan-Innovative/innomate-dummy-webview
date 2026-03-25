@@ -3,7 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-const CircularProgressWithRange = ({ value, min, max,size=60,color }) => {
+const CircularProgressWithRange = ({ value, min, max,size=70,color }) => {
   // Scale the value to a percentage between 0 and 100
   const scaledValue = ((value - min) / (max - min)) * 100;
  
@@ -15,16 +15,19 @@ const CircularProgressWithRange = ({ value, min, max,size=60,color }) => {
     height={size}
   >
     <CircularProgress
+      
       variant="determinate"
       value={scaledValue}
       size={size}
-      thickness={4}
+      thickness={5}
+      
       sx={{
         color: {color}, // Custom color code
         '& .MuiCircularProgress-circle': {
           strokeLinecap: 'round',
         },
       }}
+      enableTrackSlot
     />
     <Box
       position="absolute"
@@ -39,9 +42,9 @@ const CircularProgressWithRange = ({ value, min, max,size=60,color }) => {
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <Typography fontSize={'13px'} variant="caption" component="div" color="text.secondary">
+      <Typography fontSize={'12px'} variant="caption" component="div" color={color}>
       <Box sx={{alignContent: 'center',justifyContent: 'center', display:'flex'}} component="span">{value}</Box>
-      <Box component="span" display="block">ATMS</Box>
+      <Box component="span" display="block">Devices</Box>
       </Typography>
     </Box>
   </Box>

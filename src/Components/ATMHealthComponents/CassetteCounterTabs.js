@@ -9,6 +9,7 @@ import { AppContext } from "../../context.js";
 import apiRequest from "../../Utilities/apiUtility";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 import DataFile from "../../Utilities/DataFile.js";
 
 // Function to split the object based on the index
@@ -65,14 +66,40 @@ function a11yProps(index) {
   };
 }
 
+function CassetteData (data) {
+    const result = [];
+
+    for (let i = 0; i < data.length; i += 5) {
+
+        const obj = {};
+
+        data.slice(i, i + 5).forEach(item => {
+          const [key, value] = item.split(':').map(v => v.trim());
+
+          if (key.startsWith('Cash Remaining')) obj["Cash Remaining"] = value;
+          if (key.startsWith('Denomination')) obj["Denomination"] = value;
+          if (key.startsWith('Reject')) obj["Reject"] = value;
+          if (key.startsWith('Filling Level')) obj["Filling Level"] = value;
+          if (key.startsWith('Status')) obj["Status"] = value;
+        });
+
+        result.push(obj);
+      }
+
+      console.log(  result); 
+      return result;
+}
+
+
 const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
   const [value, setValue] = useState(0);
   const [counter, setCounter] = useState(initialCounters || {});
+  const [casettes, setCasettes] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { state, setUser } = useContext(AppContext);
-  const apiURL = process.env.REACT_APP_API_URL;
-
+  const [errorMsg, setErrorMsg] = useState(false);
+     const apiURL = process.env.REACT_APP_API_URL;
   const handleButtonClick = (index) => {
     setValue(index); // Update the value state
   };
@@ -91,6 +118,7 @@ const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
   useEffect(() => {
     
     if(DataFile.Demo){
+      console.log("Demo Mode: Fetching Cassette Counters");
       DemoGetLiveCassetteCounters();
     }else{
       GetLiveCassetteCounters();
@@ -99,8 +127,10 @@ const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
 
   const DemoGetLiveCassetteCounters = () => {
     const data = DataFile.DemoGetLiveCassetteCounters;
-    const resp = arrayToObject(data);
-    setCounter(resp);
+   // const resp = arrayToObject(data);
+   // console.log("Demo Response: ", resp);
+   // setCounter(resp);
+    setCasettes(CassetteData(data));
     setLoading(false)
 
   }
@@ -165,33 +195,68 @@ const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
 
   return (
     <Box
-      sx={{ width: "100%", backgroundColor: "#FFFFFF", marginBottom: "20%" }}
+      sx={{ width: "100%", backgroundColor: "#F9FAFB", marginBottom: "20%" ,  height: "50vh"
+      }}
     >
       {loading && (
-        <Box sx={{ width: "100%", backgroundColor: "#F5F7FD " }}>
-          <p style={{ textAlign: "center", fontSize: "12px" }}>
-            Fetching Current Counters, Please Wait
-          </p>
-          <LinearProgress />
+         <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            //alignItems: "center",
+            //textAlign: 'center',
+              marginTop:'50%',
+            height: "100vh",
+          }}
+        >
+          {" "}
+          {/* Full viewport height */}
+          <CircularProgress />
         </Box>
       )}
+
+       {!loading && !errorMsg && (
       <Box
         sx={{
-          borderBottom: 1,
-          borderColor: "divider",
-          width: "auto",
-          backgroundColor: "#F5F7FD",
+          // borderBottom: 1,
+          // borderColor: "divider",
+          maxHeight: "50px", 
+          width: "92%",
+          margin:"auto",
+          backgroundColor: "#F9FAFB",
+          overflowX: "auto",
+          overflowY: "hidden",
+          whiteSpace: "nowrap",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <Grid container>
-          {[1, 2, 3, 4].map((index) => (
-            <Grid item xs={3} key={index}>
+      <Grid container
+                 wrap="nowrap"
+                 sx={{
+                     flexWrap: "nowrap",
+                     alignItems: "center",
+                 }}
+             >
+      {casettes.map((casette,index) => { 
+             console.log(index);
+          return(
+            
+            <Grid item xs={3} key={index}
+            sx={{
+                display: "inline-flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minWidth: "110px",
+            }}>
               <Button
+              variant="outlined"
                 sx={{
-                  lineHeight: "2.5",
-                  color: value === index - 1 ? "white" : "black",
+                  height: "40px",
+                  color: value === index - 1 ? "#5F65FF" : "#1B1A1B",
                   backgroundColor:
-                    value === index - 1 ? "#4197CB !important" : "#FFFFFF",
+                    value === index - 1 ? "#5F65FF0F !important" : "#FCFDFF",
+                  borderColor: value === index - 1 ? "#5F65FF" : "#E4E6E9",
                   fontFamily: "Gilroy",
                   width: "90%",
                   display: "inline-flex",
@@ -202,17 +267,38 @@ const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
                   marginBottom: "8px",
                   marginLeft: "8px",
                   padding: "8px",
+                  flexShrink: 0, // IMPORTANT
                 }}
-                {...a11yProps(index - 1)}
+                {...a11yProps(index)}
                 onClick={() => handleButtonClick(index - 1)}
               >
-                {`Cassette ${index}`}
+                {`Cassette ${index + 1}`}
               </Button>
             </Grid>
-          ))}
+          )})}
         </Grid>
-      </Box>
-      <CustomTabPanel value={value} index={0}>
+      </Box> )}
+
+      {!loading && errorMsg && (
+        <Box
+            style={{
+              display: 'flex',
+              //justifyContent: 'center',
+              //alignItems: 'center',
+              textAlign: 'center',
+              marginTop:'20%',
+              height: '100vh',
+              color: '#666', // Customize text color if needed
+              fontSize: '16px',
+            }}
+          >
+            Unable to get current counters and no previous data available.
+          </Box>
+      )}    
+
+      {!loading && !errorMsg && (
+      <Box>
+      {/* <CustomTabPanel value={value} index={0}>
         <TableComponent Tab={Tab1} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
@@ -223,7 +309,14 @@ const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
         <TableComponent Tab={Tab4} />
-      </CustomTabPanel>
+      </CustomTabPanel> */}
+      {casettes.map((casette,index) => (
+              <CustomTabPanel value={value} index={index-1}>
+                  <TableComponent Tab={casette} />
+              </CustomTabPanel>
+            ))}
+      </Box>
+    )}
     </Box>
   );
 };

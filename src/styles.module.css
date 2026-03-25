@@ -20,14 +20,14 @@
 }
 
 .LoginContainer {
-  background-color: #f5f7ff;
+  background-color: #F9FAFB;
   height: 100vh;
   min-height:100vh;
   justify-content: center;
   align-items: center;
 }
 .LoginHeaderText {
-  padding-top: 30px;
+  padding-top: 15%;
   font-size: 16px;
   font-weight: normal;
   color: #131313;
@@ -48,22 +48,29 @@
   margin-left: 4%;
 }
 .Logintext {
+ font-family: 'Gilroy', sans-serif;
   top: 0%;
-  margin-top: -8%;
+  margin-top: -30px;
   font-size: 14px;
-  font-weight: bold;
-  color: #3e3e3e;
+  /* font-weight: bold; */
+  color:#5D6679;
   display: flex;
   margin-left: 4%;
 }
 .LoginInputFieldArea {
-  margin-top: 10%;
+  margin:auto;
+  margin-top: 2%;
+  padding-bottom: 20px;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 60px;
-  justify-content: center;
+  width: 90%;
+  /* height: 52%; */
   align-items: center;
+  border:solid;
+  border-color:  #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0px 0px 40px 1px #5F65FF15;
 }
 .InputField {
   width: 90%;
@@ -78,22 +85,22 @@
   color: d;
 }
 .LoginButtonContainer {
-  height: 62px;
-  width: 224px;
-  margin-left: 25%;
+  height: 54px;
+  width: 100%;
   position: fixed;
   justify-content: center;
   align-items: center;
   bottom: 0;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+ 
 }
 .DashboardHeading {
   font-size: 21px;
   font-weight: bold;
-  margin-top: 0%;
-  margin-bottom: 2%;
+  margin-top: 3%;
+  /* margin-bottom: 2%; */
   font-family: 'Gilroy', sans-serif;
-  color: #ffffff;
+  color: #1B1A1B;
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -101,10 +108,10 @@
 }
 .DashboardWelcomeText {
   
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
   font-family: 'Gilroy', sans-serif;
-  color: #ffffff;
+  color: #5F65FF;
   display: flex;
   flex-direction: row;
   float: left;
@@ -113,37 +120,41 @@
 }
 .LastLoginText {
   top: 0%;
-  margin-top: -2%;
-  font-size: 12px;
+  margin-top: -1%;
+  font-size: 14px;
   font-weight: normal;
   font-family: 'Gilroy', sans-serif;
-  color: #ffffff;
+  color: #1B1A1B;
   display: flex;
   margin-left: 2%;
 }
 .DashboardCard {
-  background-color: #f5f7fd;
+  background-color: #FFFFFF;
   width: 80%;
   border-radius: 20px;
   padding: 15px;
   padding-top: 25px;
   margin-top: 0px;
-  
+  box-shadow: 0px 0px 40px 1px #88888810;
 }
 .InfoCard {
-  background-color: #f5f7fd;
-  width: 90%;
+  background-color: #ffffff;
+  width: 100%;
+  min-height: 80px;
   border-radius: 20px;
-  padding: 15px;
+  padding-top: 15px;
   margin-top: 0px !important;
 }
 .Centerdiv {
   justify-content: center;
   align-items: center;
   display: flex;
-  margin-top: 8%;
+  margin-top: 20px;
+ 
+  
 }
 .Heading {
+
   margin: 0px;
 }
 .text {
@@ -153,6 +164,7 @@
   width: 45%;
   border-radius: 15px !important;
   line-height: 1.75;
+  align-content: center;
 }
 .ItemDivDashboard {
   display: flex;
@@ -163,7 +175,7 @@
 .InfoCardHeading {
   font-size: 17px;
   font-weight: bold;
-  color: #3e3e3E;
+  color: #1B1A1B;
   font-family: 'Gilroy', sans-serif;
   margin-bottom: 4%;
   margin-top: 5%;
@@ -171,34 +183,40 @@
 .topbarmaindiv {
   display: inline-flex;
   width: 100%;
-  background-color: #4197cb;
-  margin-bottom: -1px;
+  background-color: #F9FAFB;
+  margin-bottom: -1px; 
   padding-top: 5px;
+  
+  /* margin-top: 30px; */
+ 
 }
 .avatardivtopbar {
-  background-color: #4197cb;
-  width: 20px;
+  background-color: #F9FAFB;
+  /* width: 20px; */
   justify-content: center;
   display: flex;
   padding: 4%;
   padding-bottom: 3%;
   height: 50px;
   width: 50px;
+  /* margin-left: 20px; */
+  margin:auto
 }
 .atmlistitemmaindiv {
   width: 92%;
-  background-color: #e1f0fa;
-  height: 70px;
+  background-color: #FFFFFF;
+  height: 80px;
   margin-top: 0%;
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 10px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .atmlisticon {
-  width: 23px;
-  height: 26px;
-  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+  /* margin-top: 5px; */
 }
 .atmlistheading {
   font-family: 'Gilroy', sans-serif;
@@ -210,7 +228,7 @@
 }
 .ATMListmainDiv {
   /* background-color: #f5f5f5 !important; */
-  background-color: #f5f7fd !important;
+  background-color: #F9FAFB !important;
   height: 100vh;
   margin-bottom: 70px;
 }
@@ -272,4 +290,121 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  /* Just for swipe functionality */
+  .swipeList {
+    width: 100%;
+    /* max-width: 400px; */
+    margin: 0 auto;
+    margin-left: 20px;
+  }
+  
+  .swipeItem {
+    width:80%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .itemContent {
+    padding: 16px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .deleteButtonContainer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .deleteButton {
+    height: 100%;
+    padding: 0 20px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .delete-button.visible {
+    transform: translateX(0);
+  }
+  
+  /* For custom solution */
+  .delete-action {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 80px;
+    background: #ff4444;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+  }
+  
+}
+
+/* Till here */
+
+.commands-btn {
+  background: none;
+  border: none;
+  color: #5f65ff;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+}
+
+/* Action Panel */
+.actionPanel {
+  margin-bottom: 12px;
+  border: 1px solid #E4E6E9;
+  border-radius: 15px;
+  width: 100%;
+  padding-inline: 8px;
+  background-color:#FCFDFF ;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.runBtn {
+  background: #5F65FF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.runBtn:hover {
+  background: #4b50e6;
 }

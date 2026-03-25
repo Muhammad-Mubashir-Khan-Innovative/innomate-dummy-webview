@@ -4,20 +4,34 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import CassetteCounterIcon from "../../Sources/cashdispenseicon.png";
-import CassetteCounterIconSelected from "../../Sources/cashdispenseIconBlue.png";
-import MenuIcon from "../../Sources/MainMenu.png";
+
+
 import swal from "sweetalert";
-import MenuIconSelected from "../../Sources/MainMenuSelected.png";
+
+import MenuIcon from "../../Sources/DeviceHealth_Unselected.png";
+import MenuIconSelected from "../../Sources/DeviceHealth_Selected.png";
+
+import DeviceDetailsUnselected from "../../Sources/DeviceDetails_Unselected.svg";
+import DeviceDetailsSelected from "../../Sources/DeviceDetails_Selected.svg";
+import DeviceHealthUnselected from "../../Sources/DeviceHealth_Unselected.svg";
+import DeviceHealthSelected from "../../Sources/DeviceHealth_Selected.svg";
+import CassetteCounterIcon from "../../Sources/DeviceCounters_Unselected.svg";
+import CassetteCounterIconSelected from "../../Sources/DeviceCounters_Selected.svg";
+import Settings from "../../Sources/SystemInfo_Unselected.svg";
+import SettingSelected from "../../Sources/SystemInfo_Selected.svg";
+import IncidentViewUnselected from "../../Sources/IncidentView_Unselected.svg";
+import IncidentViewSelected from "../../Sources/IncidentView_Selected.svg"
+import LastTnxUnselected from "../../Sources/LastTxn_Unselected.svg";
+import LastTnxSelected from "../../Sources/LastTxn_Selected.svg";
+
 import MonitorHeartOutlinedIcon from "@mui/icons-material/MonitorHeartOutlined";
-import ATMHealth from "../../Sources/ATMHealth.png";
 import { useNavigate } from "react-router-dom";
 import ATMHealthSelected from "../../Sources/ATMHealthSelected.png";
-import Settings from "../../Sources/Settings.png";
-import SettingSelected from "../../Sources/SettingSelected.png";
+
 import TableComponent from "./TabComponent";
 import CircularProgress from "@mui/material/CircularProgress";
 import CassetteCounterTabs from "./CassetteCounterTabs";
+import IncidentsViewTab from "./IncidentsViewTab.js";
 import ATMComponentsHealthTab from "./ATMComponentsTab";
 import { AppContext } from "../../context.js";
 import { useEffect, useContext, useState } from "react";
@@ -49,10 +63,8 @@ const updateTab4Values = (tab4) => {
     if (value && value.length > 0) {
       if (value[0] === "0") {
         updatedTab4[key] = "Operational";
-      } else if (value[0] === "1") {
-        updatedTab4[key] = "Full Failure";
       } else {
-        updatedTab4[key] = value;
+        updatedTab4[key] = "Full Failure";
       }
     } else {
       updatedTab4[key] = value;
@@ -95,10 +107,13 @@ const ATMHealthTabs = ({ ATMid }) => {
     Tab2: {},
     Tab3: {},
     Tab4: {},
+    Tab5: {},
+    Tab6: {},
   });
+  const [lastTran, setLastTran] = React.useState({})
   const [value, setValue] = React.useState(0);
   const [loading, setLoading] = React.useState(true); // Loading state
-  const apiURL = process.env.REACT_APP_API_URL;
+   const apiURL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate(); // Hook for navigation
   const { state, setATMs, setUser } = useContext(AppContext);
 
@@ -144,13 +159,13 @@ const ATMHealthTabs = ({ ATMid }) => {
       const dbData = {
         Description: apiData.Description,
         Name: apiData.Name,
-        NumberOfCores: apiData.NoofCores,
-        HDDCapacity: `${(apiData.HDDsize / 1024 ** 3).toFixed(2)} GB`,
+        "No of Cores": apiData.NoofCores,
+        "HDD Capacity": `${(apiData.HDDsize / 1024 ** 3).toFixed(2)} GB`,
         Partitions: apiData.Partition,
         // MemorySize: `${(apiData.TotalPhysicalMemory / 1024 ** 3).toFixed(
         //   2
         // )} GB`,
-        MACAddress: apiData.MACAddress,
+        "MAC Address": apiData.MACAddress,
       };
 
       // Update Tab3 with the database data
@@ -160,18 +175,33 @@ const ATMHealthTabs = ({ ATMid }) => {
       const transformedData = {
         Description: apiData.Caption, // Map 'Caption' to 'Description'
         Name: apiData.Name,
-        NumberOfCores: apiData.NumberOfCores,
-        HDDCapacity: `${(apiData.Size / 1024 ** 3).toFixed(2)} GB`, // Map 'Size' to 'HDDCapacity'
+        "No of Cores": apiData.NumberOfCores,
+        "HDD Capacity": `${(apiData.Size / 1024 ** 3).toFixed(2)} GB`, // Map 'Size' to 'HDDCapacity'
         Partitions: apiData.Partitions,
         // MemorySize: `${(apiData.TotalPhysicalMemory / 1024 ** 3).toFixed(
         //   2
         // )} GB`, // Map 'TotalPhysicalMemory' to 'MemorySize'
-        MACAddress: apiData.PhysicalAddress,
+        "MAC Address": apiData.PhysicalAddress,
       };
 
       // Update Tab3 with the transformed API data
       setTabData((prev) => ({ ...prev, Tab3: transformedData }));
     }
+    setLoading(false);
+  }
+
+  const DemoFetchLastTransaction = () => {
+    setLoading(true);
+    const data = DataFile.DemoFetchLastTransaction
+    
+    const transformedData = {
+      Type: data.Trxn_type,
+      Time: data.Trxn_time,
+      Date: data.Trxn_date,
+      Status: data.Status,
+    };
+    console.log(transformedData);
+    setLastTran(transformedData);
     setLoading(false);
   }
 
@@ -349,6 +379,7 @@ const ATMHealthTabs = ({ ATMid }) => {
         console.log("IN DEMO")
         DemoGetATMDataAgainstUser();
         DemoFetchSystemInfo();
+        DemoFetchLastTransaction();
 
       }else{
         console.log("IN LIVE")
@@ -362,7 +393,7 @@ const ATMHealthTabs = ({ ATMid }) => {
   }, [ATMid]); // Trigger the API call whenever ATMid changes
 
   return (
-    <Box sx={{ width: "100%", backgroundColor: "#FFFFFF", height: "100vh" }}>
+    <Box sx={{ width: "100%", backgroundColor: "#F9FAFB", height: "100vh" }}>
       {" "}
       {/* Full height */}
       {loading ? (
@@ -382,49 +413,56 @@ const ATMHealthTabs = ({ ATMid }) => {
         <>
           <Box
             sx={{
-              borderBottom: 1,
-              borderColor: "divider",
-              backgroundColor: "#F5F7FD",
+              // borderBottom: 1,
+              // borderColor: "divider",
+              backgroundColor: "#F9FAFB",
             }}
           >
             <Tabs
-              sx={{ display: "flex" }}
+              // sx={{ display: "flex" }}
               value={value}
               onChange={handleChange}
-              aria-label="basic tabs example"
+              variant="scrollable"
+              scrollButtons
+              allowScrollButtonsMobile
+              aria-label="scrollable force tabs example"
+              textColor="#5F65FF"
+              indicatorColor="#F9FAFB"
             >
               <Tab
                 sx={{
                   width: "25%",
-                  color: "black",
+                 // color: "black",
                   fontFamily: ["Gilroy","sans-serif"],
                   fontWeight: "300",
                   textTransform: "none",
-                  fontSize: "10px",
-                  paddingTop: "20px",
+                  fontSize: "11px",
+                  //paddingTop: "20px",
+                  color:`${value === 0 ? "#5F65FF" : "black"}`
                 }}
                 icon={
                   value === 0 ? (
                     <img
-                      src={MenuIconSelected}
+                      src={DeviceDetailsSelected}
                       alt=""
                       sx={{ width: 30, height: 30 }}
                     />
                   ) : (
-                    <img src={MenuIcon} alt="" sx={{ width: 30, height: 30 }} />
+                    <img src={DeviceDetailsUnselected} alt="" sx={{ width: 30, height: 30 }} />
                   )
                 }
-                label="ATM Details"
+                label="Device Details"
                 {...a11yProps(0)}
               />
               <Tab
                 sx={{
                   width: "25%",
-                  color: "black",
+                 // color: "black",
                   fontFamily: "Gilroy",
                   fontWeight: "300",
                   textTransform: "none",
-                  fontSize: "10px",
+                  fontSize: "11px",
+                   color:`${value === 1 ? "#5F65FF" : "black"}`
                 }}
                 icon={
                   value === 1 ? (
@@ -441,17 +479,18 @@ const ATMHealthTabs = ({ ATMid }) => {
                     />
                   )
                 }
-                label="ATM Counters"
+                label="Device Counters"
                 {...a11yProps(1)}
               />
               <Tab
                 sx={{
                   width: "25%",
-                  color: "black",
+                  //color: "black",
                   fontFamily: "Gilroy",
                   fontWeight: "300",
                   textTransform: "none",
-                  fontSize: "10px",
+                  fontSize: "11px",
+                   color:`${value === 2 ? "#5F65FF" : "black"}`
                 }}
                 icon={
                   value === 2 ? (
@@ -468,31 +507,84 @@ const ATMHealthTabs = ({ ATMid }) => {
                 {...a11yProps(2)}
               />
               <Tab
-                sx={{
+                sx={{  
                   width: "25%",
-                  color: "black",
+                  //color: "black",
                   fontFamily: "Gilroy",
                   fontWeight: "300",
                   textTransform: "none",
-                  fontSize: "10px",
+                  fontSize: "11px",
+                  color:`${value === 3 ? "#5F65FF" : "black"}`
                 }}
                 icon={
                   value === 3 ? (
                     <img
-                      src={ATMHealthSelected}
+                      src={DeviceHealthSelected}
                       alt=""
                       sx={{ width: 30, height: 30 }}
                     />
                   ) : (
                     <img
-                      src={ATMHealth}
+                      src={DeviceHealthUnselected}
                       alt=""
                       sx={{ width: 30, height: 30 }}
                     />
                   )
                 }
-                label="ATM Health"
+                label="Device Health"
                 {...a11yProps(3)}
+              />
+              <Tab
+                sx={{
+                  width: "25%",
+                  //color: "black",
+                  fontFamily: "Gilroy",
+                  fontWeight: "300",
+                  textTransform: "none",
+                  fontSize: "11px",
+                   color:`${value === 4 ? "#5F65FF" : "black"}`
+                }}
+                icon={
+                  value === 4 ? (
+                    <img
+                      src={IncidentViewSelected}
+                      alt=""
+                      sx={{ width: 30, height: 30 }}
+                    />
+                  ) : (
+                    <img src={IncidentViewUnselected} alt="" sx={{ width: 30, height: 30 }} />
+                  )
+                }
+                label="Incident View"
+                {...a11yProps(4)}
+              />
+              <Tab
+                sx={{  
+                  width: "25%",
+                  //color: "black",
+                  fontFamily: "Gilroy",
+                  fontWeight: "300",
+                  textTransform: "none",
+                  fontSize: "11px",
+                  color:`${value === 5 ? "#5F65FF" : "black"}`
+                }}
+                icon={
+                  value === 5 ? (
+                    <img
+                      src={LastTnxSelected}
+                      alt=""
+                      sx={{ width: 30, height: 30 }}
+                    />
+                  ) : (
+                    <img
+                      src={LastTnxUnselected}
+                      alt=""
+                      sx={{ width: 30, height: 30 }}
+                    />
+                  )
+                }
+                label="Last Tnx Details "
+                {...a11yProps(5)}
               />
             </Tabs>
           </Box>
@@ -507,6 +599,12 @@ const ATMHealthTabs = ({ ATMid }) => {
           </CustomTabPanel>
           <CustomTabPanel value={value} index={3}>
             <ATMComponentsHealthTab Tab={tabData.Tab4} />
+          </CustomTabPanel>
+           <CustomTabPanel value={value} index={4}>
+           <IncidentsViewTab ATMid={ATMid} initialCounters={tabData.Tab5} />
+          </CustomTabPanel>
+           <CustomTabPanel value={value} index={5}>
+            <TableComponent Tab={lastTran} />
           </CustomTabPanel>
         </>
       )}

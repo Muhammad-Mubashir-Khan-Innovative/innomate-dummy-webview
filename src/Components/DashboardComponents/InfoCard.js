@@ -10,6 +10,7 @@ const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    boxShadow: 'none'
   }));
 
    const InfoCard =({onClick,background, image, heading,text}) => 
@@ -23,14 +24,14 @@ const Item = styled(Paper)(({ theme }) => ({
 <div  className={styles.ItemDivDashboard}>
   <div> 
     <img
-    style={{height:'29px',width:'30px'}}
+    style={{height:'35px',width:'35px'}}
     src={image}
     alt="Styled "
   // Apply CSS class
   /></div>
   <div>
     <h2 style={{color:'#FFFFFF'}} className={styles.Heading}>{heading}</h2>
-    <p style={{ fontSize: '12px',color:'#FFFFFF',marginLeft:'10px' }} className={`${styles.text} ${styles.responsivetext}`}>{text}</p>
+    <p style={{ fontSize: '14px',color:'#FFFFFF',marginLeft:'10px' }} className={`${styles.text} ${styles.responsivetext}`}>{text}</p>
   </div>
 </div>
 </Item>

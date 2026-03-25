@@ -23,14 +23,14 @@ import DataFile from "../Utilities/DataFile.js";
 const ExecuteJobMenu = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { state, setUser } = useContext(AppContext);
+  const { state, setUser, setDeviceid } = useContext(AppContext);
+  const [localDeviceID, setLocalDeviceID] = useState(null);
   const [assignedATMs, setAssignedATMs] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [jobCommands, setJobCommands] = useState([]);
   const [jobList, setJobList] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const apiURL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -47,7 +47,12 @@ const ExecuteJobMenu = () => {
   }, [state.ATMList, state.currentUserID]);
 
   useEffect(() => {
-    if (assignedATMs.length > 0) {
+    if (state.deviceid !== null){
+      setLocalDeviceID(state.deviceid)
+      console.log("In Signal"); 
+      DemoGetJobList();
+      
+    }else if (assignedATMs.length > 0) {
       if(DataFile.Demo){
         DemoGetJobList();
       }else{
@@ -74,15 +79,16 @@ const ExecuteJobMenu = () => {
 
   const DemoExecuteJob = (JobID, deviceid) => {
     //setLoading(true);
+    console.log(deviceid)
     let message;
             if (deviceid !== "null") {
               message = `Your Job ${String(
                 JobID
-              )} has been successfully sent for execution on all underlying assigned devices.`;
+              )} has been successfully sent for execution.`;
             } else {
               message = `Your Job ${String(
                 JobID
-              )} has been successfully sent for execution on all underlying assigned devices.`;
+              )} has been successfully sent for execution.`;
             }
 
             navigate("/SuccessScreen", {
@@ -284,8 +290,8 @@ const ExecuteJobMenu = () => {
 
   return (
     <>
-      <TopBar heading={"Job Execution"} />
-      <Paper sx={{ width: "100%", maxWidth: "100%", height: "100vh" }}>
+      <TopBar heading={"Execute Job"} />
+      <Paper sx={{ width: "100%", maxWidth: "100%", height: "100vh", backgroundColor: "#F9FAFB" }}>
         {loading ? (
           <Box
             sx={{
@@ -308,29 +314,36 @@ const ExecuteJobMenu = () => {
             overflowY: "auto",
           }}
           >
-            {jobList
-              .filter((job) => parseInt(job.commandno) === 1)
-              .map((job, index) => (
+          {Array.from(
+              new Map(
+                  jobList
+                    .filter(job => parseInt(job.commandno) === 1)
+                    .map(job => [job.jobid, job])
+                  ).values()
+              ).map((job, index) => (
                 <React.Fragment key={index}>
                   <MenuItem
                     sx={{
-                      width: "100%",
+                      width: "90%",
                       backgroundColor: "#FFFFFF",
                       padding: "20px",
+                      margin:"auto",
+                      marginBottom:"15px",
+                      borderRadius:"15px"
                     }}
                     disableRipple
                     onClick={() => handleOpenDialog(job.jobid.trim())}
                   >
-                    <div style={{ flex: 1, color: "#838383" }}>
+                    <div style={{ flex: 1, color: "#1B1A1B" }}>
                       {`${job.jobid.trim()}`}
                     </div>
                     <Button
                       onClick={(e) => {
                         e.stopPropagation();
-                        DataFile.Demo ? DemoExecuteJob(job.jobid.trim()) : executeJob(job.jobid.trim())
+                        DataFile.Demo ? DemoExecuteJob(job.jobid.trim(),localDeviceID) : executeJob(job.jobid.trim(),localDeviceID)
                       }}
                       sx={{
-                        backgroundColor: "#4197CB",
+                        backgroundColor: "#5F65FF",
                         textTransform: "none",
                       }}
                       variant="contained"
@@ -339,7 +352,7 @@ const ExecuteJobMenu = () => {
                       Execute
                     </Button>
                   </MenuItem>
-                  {index < jobList.length - 1 && <Divider sx={{ my: 0.5 }} />}
+                  {/* {index < jobList.length - 1 && <Divider sx={{ my: 0.5 }} />} */}
                 </React.Fragment>
               ))}
           </MenuList>

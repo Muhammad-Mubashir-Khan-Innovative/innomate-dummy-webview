@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import {
   TextField,
   FormControl,
@@ -29,12 +29,14 @@ import swal from "sweetalert";
 import DataFile from "../Utilities/DataFile.js";
 
 const StyledBox = styled(Box)({
-  maxWidth: "400px",
+  //maxWidth: "400px",
+  //width:"90%",
   margin: "0 auto",
   padding: "20px",
-  border: "2px solid #2980b9", // Blue border for the box
+  //border: "2px solid #2980b9", // Blue border for the box
   borderRadius: "8px",
-  backgroundColor: "#f9f9f9",
+  backgroundColor: "#FFFFFF",
+   boxShadow: "0px 0px 40px 1px #5F65FF15",
   textAlign: "center",
 });
 
@@ -60,13 +62,14 @@ const SelectedReports = () => {
   const [atmDevices, setAtmDevices] = useState([]); // Selected ATM Devices (Multiple)
   const [assignedATMs, setAssignedATMs] = useState([]); // ATMs assigned to current user
   const [loading, setLoading] = useState(true); // Loading state for ATM list
-  const apiURL = process.env.REACT_APP_API_URL;
+    const apiURL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [isDownloading, setIsDownloading] = useState(false); // Spinner state
 
   const { state } = useContext(AppContext); // Access the AppContext
   const currentUserID = state.currentUserID; // Get the current logged-in user ID
   const username = state.user.UserID; // Assuming username is part of the state
+  const fileRef = useRef("");
 
   useEffect(() => {
     console.log("ATM List:", state.ATMList);
@@ -222,8 +225,8 @@ const SelectedReports = () => {
     const pdfBlob = doc.output("blob");
     const reader = new FileReader();
     reader.onload = function () {
-        const temp = reader.result.split(",")[1];
-        const base64Data = temp.substring(0, 10000)
+        const base64Data = reader.result.split(",")[1];
+        fileRef.current = base64Data
       console.log("PDF file successfully encoded to Base64.");
       sendToReactNative(base64Data, `${title}_${deviceId}.pdf`, "pdf");
     };
@@ -257,7 +260,7 @@ const SelectedReports = () => {
 
   const DemoHandleGenerateReport = async () => {
     setIsDownloading(true);
-    if (title !== "User Status report" && atmDevices.length === 0) {
+    if (title !== "User Status" && atmDevices.length === 0) {
       swal({
         icon: "warning",
         title: "ATM Device Required",
@@ -301,13 +304,13 @@ const SelectedReports = () => {
           generatePDF(data, "_Complete", "2025-04-21", "2025-04-21");
         }
 
-        navigate("/SuccessScreen", {
-          state: {
-            message:
-              "Report downloading has started successfully. It will be saved in your device's Downloads folder.",
-            heading: "Report Generated",
-          },
-        });
+        // navigate("/SuccessScreen", {
+        //   state: {
+        //     message:
+        //       "Report downloading has started successfully. It will be saved in your device's Downloads folder.",
+        //     heading: "Report Generated",
+        //   },
+        // });
       
     } catch (error) {
       console.error("Error generating report:", error);
@@ -425,24 +428,69 @@ const SelectedReports = () => {
     }
   };
 
+  useEffect(() => {
+      const handleMessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          console.log("Got data from React Native:", data);
+          if(data.message == "Downloaded"){
+            navigate("/SuccessScreen", {
+              state: {
+                message:
+                  "Report downloading has started successfully. It will be saved in your device's Downloads folder.",
+                heading: "Report Generated",
+              },
+            });
+          }
+        } catch (err) {
+          console.error("Invalid message", err);
+        }
+      };
+      document.addEventListener("message", handleMessage);
+      window.addEventListener("message", handleMessage);
+  
+      // Cleanup event listener on component unmount
+      return () => {
+        document.removeEventListener("message", handleMessage);
+        window.addEventListener("message", handleMessage);
+      }
+    }, []);
+
   return (
     <div className={styles.ATMListmainDiv}>
       <Topbar LocationFilter={false} heading={title} />
-      <div>
+      <Box
+         sx={{
+          paddingBottom: "20px",
+          height: "calc(100vh - 150px)",
+          //height: "150vh",
+          //height: "100%",
+          overflowY: "auto",
+          margin: "20px"
+        }}
+      >
         <StyledBox>
           {/* ATM Device ComboBox for Multiple Selection */}
+          <Typography
+                variant="subtitle1"
+                align="left"
+                style={{ fontFamily: "Gilroy", color:"#5D6679", marginTop:"10px", marginBottom:"10px" }}
+              >
+                Devices
+              </Typography>
           <IconLabelBox>
-            <SearchIcon />
+            {/* <SearchIcon /> */}
             <FormControl fullWidth>
-              <InputLabel id="atm-device-select-label">ATM Devices</InputLabel>
+              {/* <InputLabel id="atm-device-select-label">ATM Devices</InputLabel> */}
               <Select
-                labelId="atm-device-select-label"
+                
                 multiple
                 value={atmDevices} // This binds to the atmDevices state (which is an array)
-                label="ATM Devices"
+                
                 onChange={(e) => setAtmDevices(e.target.value)} // Ensure value is updated as an array
                 size="small"
-                disabled={title === "User Status report"} // Disable the dropdown for "user status report"
+                disabled={title === "User Status"} // Disable the dropdown for "user status report"
+                sx={{height: "50px", borderRadius:"10px"}}
               >
                 {loading ? (
                   <MenuItem disabled>Loading...</MenuItem>
@@ -458,28 +506,30 @@ const SelectedReports = () => {
               </Select>
             </FormControl>
           </IconLabelBox>
-          <SectionDivider />
+          {/* <SectionDivider /> */}
           {/* Date Selector */}
-          <IconLabelBox>
-            <CalendarTodayIcon />
+           <IconLabelBox>
+            {/* <CalendarTodayIcon /> */}
             <FormControl component="fieldset" fullWidth>
               <Typography
                 variant="subtitle1"
                 align="left"
-                style={{ fontFamily: "Gilroy" }}
+                style={{ fontFamily: "Gilroy", color:"#5D6679", marginTop:"20px" }}
               >
-                Date:
+                Date
               </Typography>
               <RadioGroup
                 row
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
+                style={{ fontFamily: "Gilroy", color:"#5D6679", marginTop:"10px" }}
               >
-                <FormControlLabel
+                  <FormControlLabel
                   value="today"
                   control={<Radio />}
                   label="Today"
                   style={{
+                    color:"#1B1A1B",
                     display:
                       title === "Cash Outage Report" ||
                       title === "Downtime Report" ||
@@ -495,60 +545,65 @@ const SelectedReports = () => {
                   value="yesterday"
                   control={<Radio />}
                   label="Yesterday"
+                  style={{
+                    color:"#1B1A1B"
+                  }}
                 />
                 <FormControlLabel
                   value="1week"
                   control={<Radio />}
                   label="1 Week"
+                  style={{
+                    color:"#1B1A1B"
+                  }}
                 />
               </RadioGroup>
             </FormControl>
           </IconLabelBox>
-          <SectionDivider />
+          {/* <SectionDivider /> */}
           {/* Export Format Selector */}
-          <IconLabelBox>
-            <UploadFileIcon />
+           <IconLabelBox>
+            {/* <UploadFileIcon /> */}
             <FormControl component="fieldset" fullWidth>
               <Typography
                 variant="subtitle1"
                 align="left"
-                style={{ fontFamily: "Gilroy" }}
+                style={{ fontFamily: "Gilroy", color:"#5D6679" }}
               >
-                Export As:
+                Export As
               </Typography>
               <RadioGroup
                 row
                 value={exportFormat}
                 onChange={(e) => setExportFormat(e.target.value)}
+                style={{ fontFamily: "Gilroy", color:"#1B1A1B", marginTop:"10px" }}
               >
                 <FormControlLabel value="PDF" control={<Radio />} label="PDF" />
                 <FormControlLabel value="CSV" control={<Radio />} label="CSV" />
               </RadioGroup>
             </FormControl>
           </IconLabelBox>
-          <SectionDivider />
+          {/* <SectionDivider /> */}
           {/* Generate Report Button */}
+          {isDownloading ? <CircularProgress size={30} color="primary"/> : 
+          <>
+           </>
+          }
+        </StyledBox>
           <Button
             fullWidth
             variant="contained"
-            color="primary"
             onClick={DataFile.Demo ? DemoHandleGenerateReport : handleGenerateReport}
             disabled={isDownloading} // Disable the button during loading
-            startIcon={
-              isDownloading ? <CircularProgress size={20} /> : <SearchIcon />
-            } // Show spinner or icon
+            sx={{backgroundColor:"#5F65FF", height:"60px", borderRadius:"15px", fontSize:"20px", fontWeight:"bold",
+              marginTop:"40px", textDecoration:"none"
+            }}
           >
             {isDownloading ? "Downloading..." : "Generate Report"}
           </Button>
-        </StyledBox>
-        <Box textAlign="center" marginTop="20px">
-          <img
-            src="/reportimage.PNG"
-            alt="Report Illustration"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
-        </Box>
-      </div>
+       
+        <div style={{height:"10vh"}}></div>
+      </Box>
       <Footer />
     </div>
   );

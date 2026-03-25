@@ -27,8 +27,8 @@ const ATMComponentsHealthTab = ({Tab}) => {
   }, []);
 
   return (
-<Box sx={{ height: dimensions.height * 0.7, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-  <Grid container sx={{ flexGrow: 1 }}>
+<Box sx={{ height: dimensions.height * 0.7, display: 'flex', flexDirection: 'column',}}>
+  <Grid container sx={{ flexGrow: 1, border:"solid",borderColor: "white",borderRadius:"20px",margin:"10px", marginLeft:"10px", backgroundColor:"#FFFFFF", boxShadow: "0px 0px 40px 1px #5F65FF15" }}>
     {keys.map((key, index) => {
       let displayKey;
 
@@ -65,29 +65,34 @@ const ATMComponentsHealthTab = ({Tab}) => {
           key={key}
           sx={{
             flexGrow: 1,
+            backgroundColor: '#FFFFFF',
+            borderRadius:"20px",
             alignItems: 'center',
-            ...(index !== keys.length - 1 && { borderBottom: '1px solid #ccc' }), // Add border only if not last item
+            ...(index !== keys.length - 1 && { borderBottomLeftRadius:"0px", borderBottomRightRadius:"0px", borderBottom: '1px solid #C7C7C780' }), // Add border only if not last item
           }}
         >
           <Grid item xs={6}>
-            <Typography variant="body1" sx={{ textAlign: 'left', paddingLeft: '25%', color: '#838383', fontFamily: 'Gilroy' }}>
+            <Typography variant="body1" sx={{ textAlign: 'left', paddingLeft: '15%', color: '#1B1A1B', fontFamily: ["Gilroy","sans-serif"],
+                    fontWeight:"700",
+                    fontSize:"15px",
+            }}>
               {displayKey}:
             </Typography>
           </Grid>
           <Grid item xs={6}>
-          <Box sx={{ display: 'flex', alignItems: 'center',marginLeft:'10px;' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center',marginLeft:'15px;' }}>
         <Box
           sx={{
-            width: 15,
-            height: 15,
+            width: 10,
+            height: 10,
             borderRadius: '50%',
-            backgroundColor:values[index] == 'Operational' ? '#54CA36': '#EC2E22' ,
+            backgroundColor:values[index] == 'Operational' ? '#17B26A': '#DC3545' ,
             marginRight: '5px',
           }}
         />
         <Typography
           variant="body1"
-          sx={{ textAlign: 'left',fontWeight:'bold', fontFamily: 'Gilroy', wordWrap: 'break-word' }}
+          sx={{ textAlign: 'left',fontSize:"15px", fontFamily: 'Gilroy', wordWrap: 'break-word', color: values[index] == 'Operational' ? '#17B26A': '#DC3545'}}
         >
           {values[index]}
         </Typography>
@@ -97,7 +102,7 @@ const ATMComponentsHealthTab = ({Tab}) => {
       );
     })}
   </Grid>
-  <div style={{height:"10vh"}}></div>
+  <div style={{height:"5vh"}}></div>
 </Box>
 
   );

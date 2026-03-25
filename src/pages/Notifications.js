@@ -16,12 +16,13 @@ function Notifications() {
   const { state, setUser, setNotifications } = useContext(AppContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const apiURL = process.env.REACT_APP_API_URL;
+    const apiURL = process.env.REACT_APP_API_URL;
   const [loading, setLoading] = useState(true);
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
   useEffect(() => {
     const IsLoggedIn = sessionStorage.getItem("IsLoggedIn");
     if (IsLoggedIn != "Y" || IsLoggedIn == undefined) {
@@ -230,83 +231,84 @@ function Notifications() {
 
 
   return (
-<div className={styles.ATMListmainDiv} style={{ width: dimensions.width }}>
-  <Topbar heading={"Notificationss"} backbutton={true} />
-  <div style={{ backgroundColor: '#FEFEFE !important', paddingTop: '0px',paddingBottom:'3%' }}>
-    {state?.Notifications?.length > 0 ? (
-    <>
-        <div
-          style={{
-            height: '20px',
-            textAlign: 'right',
-            alignItems: 'right',
-            backgroundColor: '#FEFEFE',
-            padding: '10px',
-            margin: '0px',
-            cursor: 'pointer'
+    <div className={styles.ATMListmainDiv} style={{ width: dimensions.width }}>
+      <Topbar heading={"Notifications"} backbutton={true} />
+      <div style={{ backgroundColor: '#F9FAFB !important', paddingTop: '0px',paddingBottom:'3%' }}>
+        {state?.Notifications?.length > 0 ? (
+        <>
+            <div
+              style={{
+                height: '20px',
+                textAlign: 'right',
+                alignItems: 'right',
+                backgroundColor: '#F9FAFB',
+                padding: '10px',
+                margin: '0px',
+                cursor: 'pointer'
+              }}
+            >
+              <a
+                style={{
+                  fontSize: '14px',
+                  color: '#1987FB',
+                  paddingRight: '15px',
+                  paddingBottom: '0px',
+                  marginTop: '0px',
+                  marginBottom: '0px',
+                  textDecoration: 'none',
+                  cursor: 'pointer'
+                }}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click event from propagating to the parent div
+                  //MarkNotificationsAsRead(); // Call your function
+                }}
+              >
+                Mark All as Read
+              </a>
+            </div>
+      
+          <Box
+          sx={{
+            padding: "20px",
+            height: "calc(90vh - 150px)",
+            overflowY: "auto",
+            backgroundColor: "#F9FAFB"
           }}
         >
-          <a
+            
+            {state?.Notifications?.map((item, index) => (
+      
+    
+            <NotificationCard
+              key={index}
+              date={item.SentAt}
+              Notification={item.Description}
+              isRead={item.IsRead}
+            />
+      ))}
+
+    <div style={{height:"10vh"}}></div>
+    </Box>
+
+    </>
+
+        ) : (
+          <div
             style={{
-              fontSize: '14px',
-              color: '#1987FB',
-              paddingRight: '15px',
-              paddingBottom: '0px',
-              marginTop: '0px',
-              marginBottom: '0px',
-              textDecoration: 'none',
-              cursor: 'pointer'
-            }}
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent click event from propagating to the parent div
-              //MarkNotificationsAsRead(); // Call your function
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+              color: '#666', // Customize text color if needed
+              fontSize: '16px',
             }}
           >
-            Mark All as Read
-          </a>
-        </div>
-  
-      <Box
-      sx={{
-        padding: "20px",
-        height: "calc(90vh - 150px)",
-        overflowY: "auto",
-      }}
-    >
-        
-        {state?.Notifications?.map((item, index) => (
-  
- 
-        <NotificationCard
-          key={index}
-          date={item.SentAt}
-          Notification={item.Description}
-          isRead={item.IsRead}
-        />
-  ))}
-
-<div style={{height:"10vh"}}></div>
-</Box>
-
-</>
-
-    ) : (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          color: '#666', // Customize text color if needed
-          fontSize: '16px',
-        }}
-      >
-        No Data Found
+            No Notifications Found
+          </div>
+        )}
       </div>
-    )}
-  </div>
-  <Footer />
-</div>
+      <Footer />
+    </div>
 
   );
 }

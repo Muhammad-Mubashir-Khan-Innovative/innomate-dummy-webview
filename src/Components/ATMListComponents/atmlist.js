@@ -84,12 +84,12 @@ const ATMListcomponent = ({
   }, [selected]);
 
   const statusColors = {
-    All: "#4197CB",
-    "In Service": "#4CAF50",
-    Linkdown: "rgb(220, 53, 69)",
-    Supervisory: "#FFC107",
-    "Out of Service": "#FF0000",
-    "Comp Down": "#FF0000",
+    All: "#5F65FF0F",
+    "In Service": "#5F65FF0F",
+    Linkdown: "#5F65FF0F",
+    Supervisory: "#5F65FF0F",
+    "Out of Service": "#5F65FF0F",
+    "Comp Down": "#5F65FF0F",
   };
 
   const handleSelect = (status, event) => {
@@ -150,7 +150,7 @@ const ATMListcomponent = ({
     <div
       style={{
         display: "flex",
-        backgroundColor: "#f5f7ff",
+        backgroundColor: "#F9FAFB",
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
@@ -158,22 +158,24 @@ const ATMListcomponent = ({
       }}
     >
       <TextField
+        // color="secondary" 
         variant="outlined"
         value={searchTerm}
         placeholder="Search by Device ID"
         onChange={handleSearchChange}
         sx={{
-          width: "100%",
+          // width: "100%",
           marginBottom: "10px",
           marginTop: "20px",
           width: "90%",
+          
           "& .MuiOutlinedInput-root": {
-            borderRadius: "15px", backgroundColor:"#FFFFFF"
+            borderRadius: "15px", backgroundColor:"#FFFFFF",
           },
         }}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position="start" sx={{color:"#999EA8"}}>
               <SearchIcon />
             </InputAdornment>
           ),
@@ -191,7 +193,7 @@ const ATMListcomponent = ({
           }}
         >
           {/* Left Arrow for Scrolling */}
-          <ArrowBackIosIcon
+          {/* <ArrowBackIosIcon
             onClick={() => handleScroll(-200)}
             style={{
               position: "absolute",
@@ -203,18 +205,18 @@ const ATMListcomponent = ({
               padding: "5px",
               zIndex: 1,
             }}
-          />
+          /> */}
 
           {/* Scrollable Content */}
           <div
             ref={scrollContainerRef}
             style={{
               display: "inline-flex",
-              width: "80%",
+              width: "90%",
               overflowX: "auto",
               scrollBehavior: "smooth",
-              marginLeft: "10%",
-              paddingBottom:"10px"
+              marginLeft: "4%",
+              paddingBottom:"5px"
             }}
           >
             {[
@@ -236,7 +238,7 @@ const ATMListcomponent = ({
               return (
                 <Button
                   ref={status === selected ? selectedButtonRef : null}
-                  variant="contained"
+                  variant="outlined"
                   key={status}
                   className={styles.responsivetext}
                   onClick={(event) => handleSelect(status, event)}
@@ -245,20 +247,21 @@ const ATMListcomponent = ({
                       displayText === "Filter (2)"
                         ? "#4197CB"
                         : selected === status
-                        ? statusColors[status] + "!important"
+                        ? "#FCFDFF"
                         : "#FFFFFF",
                     color:
                       displayText === "Filter (2)"
                         ? "#fff"
                         : selected === status
-                        ? "#fff"
-                        : "#000",
+                        ? "#5F65FF"
+                        : "#1B1A1B",
                     fontSize: "12px",
                     height: "40px",
                     width: "105px",
                     minWidth: "90px",
                     margin: "5px",
-                    borderRadius: "8px",
+                    borderColor: selected === status ? "#5F65FF" : "#E4E6E9",
+                    borderRadius: "12px",
                     textTransform: "none",
                     display: "inline-flex",
                   }}
@@ -270,7 +273,7 @@ const ATMListcomponent = ({
           </div>
 
           {/* Right Arrow for Scrolling */}
-          <ArrowForwardIosIcon
+          {/* <ArrowForwardIosIcon
             onClick={() => handleScroll(200)}
             style={{
               position: "absolute",
@@ -282,7 +285,7 @@ const ATMListcomponent = ({
               padding: "5px",
               zIndex: 1,
             }}
-          />
+          /> */}
         </div>
       )}
 
@@ -307,9 +310,9 @@ const ATMListcomponent = ({
           >
             <Autocomplete
               value={hiername}
-              onChange={(event, newValue) =>
+              onChange={(event, newValue) => {
                 setHiername(newValue || "All Location")
-              }
+              }}
               options={distinctHiernames}
               renderInput={(params) => (
                 <TextField
@@ -340,6 +343,7 @@ const ATMListcomponent = ({
         <Box
           sx={{
             padding: "20px",
+            //height:"30px",
             height: "calc(100vh - 170px)",
             width:"100%",
             overflowY: "auto",
@@ -408,7 +412,7 @@ const ATMListcomponent = ({
             );
           })}
          
-         <div style={{height:"10vh"}}></div>
+         <div style={{height:"15vh"}}></div>
 
         </Box>
       )}

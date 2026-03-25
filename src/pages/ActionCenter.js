@@ -31,14 +31,15 @@ const ActionCenter =()=>{
         // Cleanup event listener on component unmount
         return () => window.removeEventListener('resize', handleResize);
       }, []);
-return(
- <div style={{backgroundColor:'#F5F5F5',height:dimensions.height,width:dimensions.width,marginBottom: '70px'}}>
-<Topbar heading={'Action Center'}/>
-<div  >
-<ATMListcomponent ShowStatusFilter={false} ShowCommandButton={true}/>
-</div>
-<Footer/>
-</div>
-);
-};
+
+      return(
+        <div style={{backgroundColor:'#F5F5F5',height:dimensions.height,width:dimensions.width,marginBottom: '70px'}}>
+        <Topbar heading={'Action Center'}/>
+          <div  >
+          <ATMListcomponent ShowStatusFilter={false} ShowCommandButton={true}/>
+          </div>
+        <Footer/>
+        </div>
+      );
+      };
 export default ActionCenter;

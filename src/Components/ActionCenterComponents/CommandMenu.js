@@ -14,6 +14,7 @@ import { CircularProgress } from '@mui/material';
 import { AppContext } from '../../context.js';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Backdrop from '@mui/material/Backdrop';
+import rightArrow from '../../Sources/RightArrow.png'
 import DataFile from '../../Utilities/DataFile.js';
 
 
@@ -65,7 +66,7 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
   const [SendInServiceloading, setSendInServiceloading] = useState(false);
   const [loading,setLoading]=useState(false);
   const [SendOutOfServiceloading, setSendOutOfServiceloading] = useState(false);
-  const apiURL = process.env.REACT_APP_API_URL;
+    const apiURL = process.env.REACT_APP_API_URL;
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -466,14 +467,16 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
         sx={{
           height:height? height : '30px',
           width: '102px',
-          backgroundColor: '#4197CB',
+          // backgroundColor: '#4197CB',
           fontSize: '13px',
           borderRadius:'8px',
+          color: '#5F65FF',
+          //marginLeft: '40px',
           textTransform: 'none',
           display: 'inline-flex',
           padding: '0px 0px',
           '& .MuiButton-endIcon': {
-            marginLeft: '0px', // Remove the margin-left property
+            marginLeft: '10px', // Remove the margin-left property
           },
         }}
         aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -484,7 +487,7 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon sx={{ padding: '0px', margin: '0px' }} />}
       >
-        View Cmd's
+         Commands
       </Button>
 
       {/* Backdrop Component */}

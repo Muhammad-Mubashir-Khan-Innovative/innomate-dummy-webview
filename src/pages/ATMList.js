@@ -15,6 +15,7 @@ const ATMList =()=>{
         width: window.innerWidth,
         height: window.innerHeight,
       });
+      
     
       useEffect(() => {
           const IsLoggedIn=sessionStorage.getItem("IsLoggedIn");
@@ -37,7 +38,7 @@ const ATMList =()=>{
       }, []);
     return(
         <div className={styles.ATMListmainDiv} style={{width:dimensions.width}}>
-            <Topbar LocationFilter={true} heading={'ATM List'}/>
+            <Topbar LocationFilter={true} heading={'Device List'}/>
               <div >
               <ATMListcomponent ATMStatusFilter={ATMStatusFilter} ShowStatusFilter={true} ShowDetailsButton={true}/>
               </div>
