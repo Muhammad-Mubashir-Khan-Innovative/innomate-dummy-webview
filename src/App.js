@@ -15,8 +15,6 @@ import { AppProvider } from "./context";
 import JobResults from "./pages/JobResults";
 import Notifications from "./pages/Notifications";
 import Complaints from "./pages/Complaint";
-import { useContext } from "react";
-import { AppContext } from "../src/context.js";
 import Reports from "./pages/Reports.js";
 import Settings from "./pages/Settings.js";
 import SelectedReports from "./pages/SelectedReports.js";
