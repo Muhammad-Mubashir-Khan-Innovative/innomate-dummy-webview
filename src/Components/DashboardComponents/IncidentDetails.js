@@ -134,9 +134,9 @@ const IncidentDetailsComponent = () => {
   };
 
   const filterDataByDate = (data, filter) => {
-    console.log("Filtering data with filter:", filter);
+ 
     const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // Strip time from 'now'
+    //const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // Strip time from 'now'
 
     return data.filter((item) => {
       const startDate = new Date(item.StartTime);
@@ -145,21 +145,19 @@ const IncidentDetailsComponent = () => {
         return false; // Exclude items with invalid dates
       }
 
-      // const itemDate = new Date(
-      //   startDate.getFullYear(),
-      //   startDate.getMonth(),
-      //   startDate.getDate()
-      // ); // Strip time from 'startDate'
+      const itemDate = new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        startDate.getDate()
+      ); // Strip time from 'startDate'
       
-      // For demonstration, using a fixed date for filtering
-      const itemDate = new Date(2026, 2, 25) // Month is 0-indexed
-       
-      console.log("Filtered Data:", filter);
-      if (filter === 0) {
+      const today = new Date(2026, 2, 26) // Month is 0-indexed
+      if (filter === "today") {
+        console.log("Checking if item date is today:", itemDate.getTime() === today.getTime());
         return itemDate.getTime() === today.getTime(); // Compare only the date
-      } else if (filter === 3) {
+      } else if (filter === "3-days") {
         return (today - itemDate) / (1000 * 60 * 60 * 24) <= 3;
-      } else if (filter === 7) {
+      } else if (filter === "7-days") {
         return (today - itemDate) / (1000 * 60 * 60 * 24) <= 7;
       }
       
@@ -257,8 +255,8 @@ const IncidentDetailsComponent = () => {
                     <MenuItem 
                     value = "today"
                     onClick={(e) => {
-                      console.log(e.target.value)
-                      setFilterOption(e.target.value);
+                  
+                      setFilterOption("today");
                       Cal_handleClose()
                     }}>
                       Today
@@ -268,9 +266,8 @@ const IncidentDetailsComponent = () => {
                     value = "3-days"
                     
                     onClick={(e) => {
-                      console.log("last 3 days")
-                      console.log(e.target.value)
-                      setFilterOption(e.target.value);
+                     
+                      setFilterOption("3-days");
                       Cal_handleClose()
                     }}>
                       Last 3 Days
@@ -279,9 +276,7 @@ const IncidentDetailsComponent = () => {
                     <MenuItem 
                     value = "7-days"
                     onClick={(e) => {
-                      console.log("last 7 days")
-                      console.log(e.target.value)
-                      setFilterOption(e.target.value);
+                      setFilterOption("7-days");
                       Cal_handleClose()
                     }}>
                       Last 7 Days
