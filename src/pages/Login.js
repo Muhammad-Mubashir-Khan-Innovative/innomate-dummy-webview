@@ -89,7 +89,33 @@ function Login() {
       setisBiometricEnable(IsBiometricEnableReq);
     };
 
-    window.ReactNativeWebView.postMessage("logout");
+    //window.ReactNativeWebView.postMessage("logout");
+
+    const sendLogout = () => {
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage("logout");
+      return;
+    }
+
+    // Retry if bridge not ready yet
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage("logout");
+        clearInterval(interval);
+      } else if (attempts >= 10) {
+        clearInterval(interval);
+        console.warn("ReactNativeWebView bridge not available");
+      }
+    }, 100);
+
+    return () => clearInterval(interval); // cleanup
+  };
+
+  sendLogout();
+
+
     sessionStorage.removeItem("IsLoggedIn");
     setUser(null);
     window.handleFlag = window.handleFlag || (() => {});
