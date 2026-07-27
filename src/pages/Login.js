@@ -89,7 +89,7 @@ function Login() {
       setisBiometricEnable(IsBiometricEnableReq);
     };
 
-    //window.ReactNativeWebView.postMessage("logout");
+    window.ReactNativeWebView.postMessage("logout");
 
     const sendLogout = () => {
     if (window.ReactNativeWebView) {
@@ -129,7 +129,7 @@ function Login() {
       if (isBiometricEnable) {
         handleLoginSuccess();
       }
-     //window.ReactNativeWebView.postMessage("true");
+     window.ReactNativeWebView.postMessage("true");
     }
   }, [state.user]);
 
@@ -186,7 +186,8 @@ function Login() {
       body: {
         UserID: username,
         Password: password,
-        DeviceID: "220e83df6e757bc0", //sessionStorage.getItem("deviceID"),
+        //DeviceID: "220e83df6e757bc0", 
+        DeviceID: sessionStorage.getItem("deviceID"),
       },
     }).then((response) => {
       //console.log(response)
