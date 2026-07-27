@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import styles from '../../styles.module.css'
 import atmicon from '../../Sources/DevID.svg'
 import locationicon from '../../Sources/locationicon.png'
@@ -12,6 +12,7 @@ import rightArrow from '../../Sources/RightArrow.png'
 import downArrow from '../../Sources/downArrow.png'
 import swal from 'sweetalert';
 import { CircularProgress } from '@mui/material';
+import { isOutOfService as isDeviceOutOfService, markOutOfService, clearOutOfService, getRemainingMinutes } from '../../Utilities/outOfServiceStore';
 
 const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton, selectionMode, isOutOfService, messageText }) => {
 
@@ -20,7 +21,19 @@ const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton
   const [SendInServiceloading, setSendInServiceloading] = useState(false);
   const [loading,setLoading]=useState(false);
   const [SendOutOfServiceloading, setSendOutOfServiceloading] = useState(false);
+  const [outOfServiceLock, setOutOfServiceLock] = useState(() => isDeviceOutOfService(deviceid));
+  const [outOfServiceRemaining, setOutOfServiceRemaining] = useState(() => getRemainingMinutes(deviceid));
   const { state, setUser, setATMList, setATMs,setError, setDeviceid } = useContext(AppContext);
+
+  useEffect(() => {
+    const refreshLock = () => {
+      setOutOfServiceLock(isDeviceOutOfService(deviceid));
+      setOutOfServiceRemaining(getRemainingMinutes(deviceid));
+    };
+    refreshLock();
+    const interval = setInterval(refreshLock, 30000);
+    return () => clearInterval(interval);
+  }, [deviceid]);
 
   const actions = [
     "Execute Job",
@@ -52,6 +65,18 @@ const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton
   };
 
   const DemoSendInService = () => {
+    if (!isDeviceOutOfService(deviceid)) {
+      swal({
+        icon: 'warning',
+        title: 'Already In Service',
+        text: `Device ID ${deviceid} is already In Service.`,
+        button: 'Okay',
+      });
+      return;
+    }
+    clearOutOfService(deviceid);
+    setOutOfServiceLock(false);
+    setOutOfServiceRemaining(null);
     navigate('/SuccessScreen', {
       state: {
         message: 'Your Device ID ' + String(deviceid) + ' has been sent to Bring in Service!',
@@ -61,6 +86,18 @@ const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton
   }
 
   const DemoSendOutOfService = () => {
+    if (isDeviceOutOfService(deviceid)) {
+      swal({
+        icon: 'warning',
+        title: 'Already Out of Service',
+        text: `Device ID ${deviceid} is already Out of Service. It will become available again in about ${getRemainingMinutes(deviceid)} minute(s).`,
+        button: 'Okay',
+      });
+      return;
+    }
+    markOutOfService(deviceid);
+    setOutOfServiceLock(true);
+    setOutOfServiceRemaining(getRemainingMinutes(deviceid));
     navigate('/SuccessScreen', {
       state: {
         message: 'Your Device ID ' + String(deviceid) + ' has been sent to be Out of Order.',
@@ -216,12 +253,20 @@ const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton
               <div className={styles.actionRow}>
                 <span>Bring In Service</span>
                 {SendInServiceloading ? (
-                    <CircularProgress 
+                    <CircularProgress
                     size={26}
                     sx={{
                       marginRight:"4%",
                       color:"#5F65FF"
                     }} />
+                  ) : !outOfServiceLock ? (
+                    <button
+                      className={styles.runBtn}
+                      disabled
+                      style={{ opacity: 0.5, cursor: 'not-allowed' }}
+                    >
+                      Already In Service
+                    </button>
                   ) : (
                     <button
                       onClick={DemoSendInService}
@@ -235,12 +280,20 @@ const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton
               <div className={styles.actionRow}>
                 <span>Set Out Of Service</span>
                 {SendOutOfServiceloading ? (
-                    <CircularProgress 
+                    <CircularProgress
                     size={26}
                     sx={{
                       marginRight:"4%",
                       color:"#5F65FF"
                     }} />
+                  ) : outOfServiceLock ? (
+                    <button
+                      className={styles.runBtn}
+                      disabled
+                      style={{ opacity: 0.5, cursor: 'not-allowed' }}
+                    >
+                      {`Locked (${outOfServiceRemaining}m)`}
+                    </button>
                   ) : (
                     <button
                       onClick={DemoSendOutOfService}

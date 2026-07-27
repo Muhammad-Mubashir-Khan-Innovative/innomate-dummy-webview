@@ -16,6 +16,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Backdrop from '@mui/material/Backdrop';
 import rightArrow from '../../Sources/RightArrow.png'
 import DataFile from '../../Utilities/DataFile.js';
+import { isOutOfService as isDeviceOutOfService, markOutOfService, clearOutOfService, getRemainingMinutes } from '../../Utilities/outOfServiceStore';
 
 
 const StyledMenu = styled((props) => (
@@ -66,7 +67,19 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
   const [SendInServiceloading, setSendInServiceloading] = useState(false);
   const [loading,setLoading]=useState(false);
   const [SendOutOfServiceloading, setSendOutOfServiceloading] = useState(false);
+  const [outOfServiceLock, setOutOfServiceLock] = useState(() => isDeviceOutOfService(deviceid));
+  const [outOfServiceRemaining, setOutOfServiceRemaining] = useState(() => getRemainingMinutes(deviceid));
     const apiURL = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    const refreshLock = () => {
+      setOutOfServiceLock(isDeviceOutOfService(deviceid));
+      setOutOfServiceRemaining(getRemainingMinutes(deviceid));
+    };
+    refreshLock();
+    const interval = setInterval(refreshLock, 30000);
+    return () => clearInterval(interval);
+  }, [deviceid]);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -98,6 +111,18 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
 
 
   const DemoSendInService = () => {
+    if (!isDeviceOutOfService(deviceid)) {
+      swal({
+        icon: 'warning',
+        title: 'Already In Service',
+        text: `Device ID ${deviceid} is already In Service.`,
+        button: 'Okay',
+      });
+      return;
+    }
+    clearOutOfService(deviceid);
+    setOutOfServiceLock(false);
+    setOutOfServiceRemaining(null);
     navigate('/SuccessScreen', {
       state: {
         message: 'Your Device ID ' + String(deviceid) + ' has been sent to Bring in Service!',
@@ -224,6 +249,18 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
   };
 
   const DemoSendOutOfService = () => {
+    if (isDeviceOutOfService(deviceid)) {
+      swal({
+        icon: 'warning',
+        title: 'Already Out of Service',
+        text: `Device ID ${deviceid} is already Out of Service. It will become available again in about ${getRemainingMinutes(deviceid)} minute(s).`,
+        button: 'Okay',
+      });
+      return;
+    }
+    markOutOfService(deviceid);
+    setOutOfServiceLock(true);
+    setOutOfServiceRemaining(getRemainingMinutes(deviceid));
     navigate('/SuccessScreen', {
       state: {
         message: 'Your Device ID ' + String(deviceid) + ' has been sent to be Out of Order.',
@@ -539,11 +576,20 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
           disableRipple
         >
           <div style={{ width: dimensions.width * 0.65 }}>
-            Bring In Service
+            {!outOfServiceLock ? 'Already In Service' : 'Bring In Service'}
           </div>
           <div>
           {SendInServiceloading ? (
               <CircularProgress size={20} sx={{ marginLeft: 1 }} />
+            ) : !outOfServiceLock ? (
+              <Button
+                disabled
+                sx={{ backgroundColor: '#4197CB', textTransform: 'none' }}
+                variant="contained"
+                size="small"
+              >
+                Locked
+              </Button>
             ) : (
               <Button
                 onClick={DataFile.Demo ? DemoSendInService : SendInService}
@@ -587,11 +633,20 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
           disableRipple
         >
           <div style={{ width: dimensions.width * 0.65 }}>
-            Send Out of Service
+            {outOfServiceLock ? `Out of Service (${outOfServiceRemaining}m left)` : 'Send Out of Service'}
           </div>
           <div>
           {SendOutOfServiceloading ? (
               <CircularProgress size={20} sx={{ marginLeft: 1 }} />
+            ) : outOfServiceLock ? (
+              <Button
+                disabled
+                sx={{ backgroundColor: '#4197CB', textTransform: 'none' }}
+                variant="contained"
+                size="small"
+              >
+                Locked
+              </Button>
             ) : (
               <Button
                 onClick={DataFile.Demo ? DemoSendOutOfService  : SendOutOfService }

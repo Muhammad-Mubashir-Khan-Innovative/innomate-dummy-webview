@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context.js";
 import { ContinuousColorLegend } from "@mui/x-charts";
 import DataFile from "../Utilities/DataFile.js"
+import { isOutOfService as isDeviceOutOfService } from "../Utilities/outOfServiceStore";
 
 
 const listItems = [
@@ -120,12 +121,25 @@ function Dashboard() {
       console.log("IN LIVE")
       GetATMDataAgainstUser();
     }
-    
+
     //SetPlayerID();
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on component unmount
-    return () => window.removeEventListener("resize", handleResize);
+    // Poll every 5s so widget counts (e.g. Supervisory after a Set Out Of
+    // Service command) refresh without needing to leave and return to this page.
+    const pollInterval = setInterval(() => {
+      if (DataFile.Demo) {
+        DemoDashboardGetATMDataAgainstUser();
+      } else {
+        GetATMDataAgainstUser();
+      }
+    }, 5000);
+
+    // Cleanup event listener/interval on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearInterval(pollInterval);
+    };
   }, []);
 
   const DemoDashboardGetATMDataAgainstUser = () => {
@@ -155,7 +169,7 @@ function Dashboard() {
             case "Okay":
               setUser(null);
               sessionStorage.removeItem("IsLoggedIn");
-              window.ReactNativeWebView.postMessage("logout");
+             // window.ReactNativeWebView.postMessage("logout");
               navigate("/"); // Navigate to login screen
               break;
           }
@@ -197,7 +211,7 @@ function Dashboard() {
               case "Okay":
                 sessionStorage.removeItem("IsLoggedIn");
                 setUser(null);
-                window.ReactNativeWebView.postMessage("logout");
+            //    window.ReactNativeWebView.postMessage("logout");
                 navigate("/");
                 break;
             }
@@ -217,7 +231,7 @@ function Dashboard() {
             case "Okay":
               sessionStorage.removeItem("IsLoggedIn");
               setUser(null);
-              window.ReactNativeWebView.postMessage("logout");
+             // window.ReactNativeWebView.postMessage("logout");
               navigate("/");
               break;
           }
@@ -387,7 +401,7 @@ function Dashboard() {
                     image={DashboardCardImage2}
                     background={"#A6CF46"}
                     heading={
-                      ATMListData?.filter((item) => item.IndicesOfOnes === "0")
+                      ATMListData?.filter((item) => item.IndicesOfOnes === "0" && !isDeviceOutOfService(item.DeviceID))
                         ?.length
                     }
                     text={"In Service"}
@@ -438,7 +452,7 @@ function Dashboard() {
                   max={state?.ATMList?.length}
                   value={
                     ATMListData?.filter(
-                      (item) => item.Bit == parseInt(SupervisoryBit)
+                      (item) => item.Bit == parseInt(SupervisoryBit) || isDeviceOutOfService(item.DeviceID)
                     )?.length
                   }
                   // value = {15}

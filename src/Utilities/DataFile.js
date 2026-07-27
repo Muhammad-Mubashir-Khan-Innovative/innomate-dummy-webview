@@ -174,69 +174,415 @@ const DataFile = {
     ],
 
     ///ATMDetailsController/GetATMDetails
+    // Keyed by DeviceID so each ATM shows its own details instead of one shared static record.
     DemoGetATMDataAgainstUser:
-    [
-        [
-            "Name: ATM123456",
-            "Branch Name: Clifton",
-            "Location: Karachi",
-            "Model No: Details Not Found",
-            "Status: Active",
-            "Last Tnx Time: Details Not Found"
+    {
+        "ATM001": [
+            [
+                "Name: ATM001",
+                "Branch Name: Karachi",
+                "Location: Karachi",
+                "Model No: NCR SelfServ 22",
+                "Status: Link Down",
+                "Last Tnx Time: 2026-03-18 09:01:02"
+            ],
+            [
+                "Cash Remaining1: 12000",
+                "Denomination1: 500",
+                "Reject1: 0",
+                "Filling Level1: 15.2",
+                "Status1: Active",
+                "Cash Remaining2: 8000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 9.4",
+                "Status2: Active",
+                "Cash Remaining3: 250000",
+                "Denomination3: 5000",
+                "Reject3: 1",
+                "Filling Level3: 42",
+                "Status3: Active",
+                "Cash Remaining4: 60000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 30",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 94 Stepping 3",
+                "Name: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+                "No Of Cores: 4",
+                "HDD Capacity: 500105249280",
+                "Partitions: 4",
+                "MAC Address: 00-01-2E-A7-57-64"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 1 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
         ],
-        [
-            "Cash Remaining1: 48000",
-            "Denomination1: 500",
-            "Reject1: 1",
-            "Filling Level1: 40.8",
-            "Status1: Active",
-            "Cash Remaining2: 55000",
-            "Denomination2: 1000",
-            "Reject2: 1",
-            "Filling Level2: 20.75",
-            "Status2: Active",
-            "Cash Remaining3: 500000",
-            "Denomination3: 5000",
-            "Reject3: 0",
-            "Filling Level3: 85",
-            "Status3: Active",
-            "Cash Remaining4: 100000",
-            "Denomination4: 1000",
-            "Reject4: 0",
-            "Filling Level4: 50",
-            "Status4: Active"
+        "ATM002": [
+            [
+                "Name: ATM002",
+                "Branch Name: Lahore",
+                "Location: Lahore",
+                "Model No: Wincor Nixdorf ProCash 280",
+                "Status: Link Down",
+                "Last Tnx Time: 2026-03-17 18:22:41"
+            ],
+            [
+                "Cash Remaining1: 30000",
+                "Denomination1: 500",
+                "Reject1: 0",
+                "Filling Level1: 28.5",
+                "Status1: Active",
+                "Cash Remaining2: 45000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 33.1",
+                "Status2: Active",
+                "Cash Remaining3: 400000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 70",
+                "Status3: Active",
+                "Cash Remaining4: 80000",
+                "Denomination4: 1000",
+                "Reject4: 1",
+                "Filling Level4: 40",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 158 Stepping 10",
+                "Name: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz",
+                "No Of Cores: 6",
+                "HDD Capacity: 250058792448",
+                "Partitions: 3",
+                "MAC Address: 00-14-22-01-23-45"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 1 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
         ],
-        [
-            "Description: Intel64 Family 6 Model 94 Stepping 3",
-            "Name: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
-            "No Of Cores: 4",
-            "HDD Capacity: 500105249280",
-            "Partitions: 4",
-            "MAC Address: 00-01-2E-A7-57-64"
+        "ATM003": [
+            [
+                "Name: ATM003",
+                "Branch Name: Karachi",
+                "Location: Karachi",
+                "Model No: NCR SelfServ 22",
+                "Status: Active",
+                "Last Tnx Time: 2026-03-21 14:05:12"
+            ],
+            [
+                "Cash Remaining1: 48000",
+                "Denomination1: 500",
+                "Reject1: 1",
+                "Filling Level1: 40.8",
+                "Status1: Active",
+                "Cash Remaining2: 55000",
+                "Denomination2: 1000",
+                "Reject2: 1",
+                "Filling Level2: 20.75",
+                "Status2: Active",
+                "Cash Remaining3: 500000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 85",
+                "Status3: Active",
+                "Cash Remaining4: 100000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 50",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 94 Stepping 3",
+                "Name: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+                "No Of Cores: 4",
+                "HDD Capacity: 500105249280",
+                "Partitions: 4",
+                "MAC Address: 00-01-2E-A7-57-64"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
         ],
-        [
-            "Card Reader: 0 - Card Reader                                                                     ",
-            "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
-            "Host Communication Error: 0 - Host Communication Error                                                        ",
-            "Journal Printer: 1 - Journal Printer                                                                 ",
-            "Out of Cash: 0 - Out of Cash                                                                     ",
-            "Receipt Printer: 1 - Receipt Printer                                                                 ",
-            "Supervisory Mode: 0 - Supervisory Mode                                                                "
+        "ATM004": [
+            [
+                "Name: ATM004",
+                "Branch Name: Islamabad",
+                "Location: Islamabad",
+                "Model No: Diebold Opteva 522",
+                "Status: Supervisory Mode",
+                "Last Tnx Time: 2026-03-20 11:47:03"
+            ],
+            [
+                "Cash Remaining1: 20000",
+                "Denomination1: 500",
+                "Reject1: 0",
+                "Filling Level1: 18.0",
+                "Status1: Active",
+                "Cash Remaining2: 15000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 11.2",
+                "Status2: Active",
+                "Cash Remaining3: 350000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 60",
+                "Status3: Active",
+                "Cash Remaining4: 40000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 22",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 165 Stepping 5",
+                "Name: Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz",
+                "No Of Cores: 8",
+                "HDD Capacity: 1000204886016",
+                "Partitions: 4",
+                "MAC Address: 00-1B-44-11-3A-B7"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 1 - Supervisory Mode                                                                "
+            ]
+        ],
+        "ATM005": [
+            [
+                "Name: ATM005",
+                "Branch Name: Karachi",
+                "Location: Karachi",
+                "Model No: NCR SelfServ 34",
+                "Status: Supervisory Mode",
+                "Last Tnx Time: 2026-03-19 16:30:55"
+            ],
+            [
+                "Cash Remaining1: 5000",
+                "Denomination1: 500",
+                "Reject1: 2",
+                "Filling Level1: 4.1",
+                "Status1: Active",
+                "Cash Remaining2: 10000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 7.6",
+                "Status2: Active",
+                "Cash Remaining3: 150000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 25",
+                "Status3: Active",
+                "Cash Remaining4: 20000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 12",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 94 Stepping 3",
+                "Name: Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz",
+                "No Of Cores: 4",
+                "HDD Capacity: 500105249280",
+                "Partitions: 4",
+                "MAC Address: 00-1A-2B-3C-4D-5E"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 1 - Supervisory Mode                                                                "
+            ]
+        ],
+        "ATM006": [
+            [
+                "Name: ATM006",
+                "Branch Name: Karachi",
+                "Location: Karachi",
+                "Model No: NCR SelfServ 22",
+                "Status: Out of Cash",
+                "Last Tnx Time: 2026-03-21 08:12:47"
+            ],
+            [
+                "Cash Remaining1: 0",
+                "Denomination1: 500",
+                "Reject1: 0",
+                "Filling Level1: 0",
+                "Status1: Empty",
+                "Cash Remaining2: 0",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 0",
+                "Status2: Empty",
+                "Cash Remaining3: 100000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 20",
+                "Status3: Active",
+                "Cash Remaining4: 10000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 5",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 94 Stepping 3",
+                "Name: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+                "No Of Cores: 4",
+                "HDD Capacity: 500105249280",
+                "Partitions: 4",
+                "MAC Address: 00-2C-3D-4E-5F-60"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 1 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
+        ],
+        "ATM007": [
+            [
+                "Name: ATM007",
+                "Branch Name: Lahore",
+                "Location: Lahore",
+                "Model No: Wincor Nixdorf ProCash 280",
+                "Status: Out of Cash",
+                "Last Tnx Time: 2026-03-20 22:03:19"
+            ],
+            [
+                "Cash Remaining1: 0",
+                "Denomination1: 500",
+                "Reject1: 0",
+                "Filling Level1: 0",
+                "Status1: Empty",
+                "Cash Remaining2: 3000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 2.2",
+                "Status2: Active",
+                "Cash Remaining3: 200000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 35",
+                "Status3: Active",
+                "Cash Remaining4: 0",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 0",
+                "Status4: Empty"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 158 Stepping 10",
+                "Name: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz",
+                "No Of Cores: 6",
+                "HDD Capacity: 250058792448",
+                "Partitions: 3",
+                "MAC Address: 00-71-82-93-A4-B5"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 1 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
+        ],
+        "ATM123456": [
+            [
+                "Name: ATM123456",
+                "Branch Name: Clifton",
+                "Location: Karachi",
+                "Model No: NCR SelfServ 84",
+                "Status: Active",
+                "Last Tnx Time: 2026-03-21 15:07:46"
+            ],
+            [
+                "Cash Remaining1: 48000",
+                "Denomination1: 500",
+                "Reject1: 1",
+                "Filling Level1: 40.8",
+                "Status1: Active",
+                "Cash Remaining2: 55000",
+                "Denomination2: 1000",
+                "Reject2: 1",
+                "Filling Level2: 20.75",
+                "Status2: Active",
+                "Cash Remaining3: 500000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 85",
+                "Status3: Active",
+                "Cash Remaining4: 100000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 50",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 94 Stepping 3",
+                "Name: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+                "No Of Cores: 4",
+                "HDD Capacity: 500105249280",
+                "Partitions: 4",
+                "MAC Address: 00-01-2E-A7-57-64"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 1 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 1 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
         ]
-    ],
+    },
 
     ///CommandExecutionController/GetSystemInfo
-    DemoFetchSystemInfo : 
+    // Keyed by DeviceID so System Info matches the selected ATM instead of always showing ATM123456.
+    DemoFetchSystemInfo :
     {
-        "ATMID": "ATM123456",
-        "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
-        "Description": "Intel64 Family 6 Model 94 Stepping 3",
-        "NoofCores": 4,
-        "HDDsize": "500105249280",
-        "SerialNo": null,
-        "Partition": "4",
-        "MACAddress": "00-01-2E-A7-57-64",
-        "LastUpdated": "2025-02-27T16:58:37.23"
+        "ATM001": { "ATMID": "ATM001", "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-01-2E-A7-57-64", "LastUpdated": "2026-03-18T09:05:00.00" },
+        "ATM002": { "ATMID": "ATM002", "Name": "Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz", "Description": "Intel64 Family 6 Model 158 Stepping 10", "NoofCores": 6, "HDDsize": "250058792448", "SerialNo": null, "Partition": "3", "MACAddress": "00-14-22-01-23-45", "LastUpdated": "2026-03-17T18:25:00.00" },
+        "ATM003": { "ATMID": "ATM003", "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-01-2E-A7-57-64", "LastUpdated": "2026-03-21T14:10:00.00" },
+        "ATM004": { "ATMID": "ATM004", "Name": "Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz", "Description": "Intel64 Family 6 Model 165 Stepping 5", "NoofCores": 8, "HDDsize": "1000204886016", "SerialNo": null, "Partition": "4", "MACAddress": "00-1B-44-11-3A-B7", "LastUpdated": "2026-03-20T11:50:00.00" },
+        "ATM005": { "ATMID": "ATM005", "Name": "Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-1A-2B-3C-4D-5E", "LastUpdated": "2026-03-19T16:35:00.00" },
+        "ATM006": { "ATMID": "ATM006", "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-2C-3D-4E-5F-60", "LastUpdated": "2026-03-21T08:15:00.00" },
+        "ATM007": { "ATMID": "ATM007", "Name": "Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz", "Description": "Intel64 Family 6 Model 158 Stepping 10", "NoofCores": 6, "HDDsize": "250058792448", "SerialNo": null, "Partition": "3", "MACAddress": "00-71-82-93-A4-B5", "LastUpdated": "2026-03-20T22:05:00.00" },
+        "ATM123456": { "ATMID": "ATM123456", "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-01-2E-A7-57-64", "LastUpdated": "2025-02-27T16:58:37.23" }
     },
 
     ///CommandExecutionController/GetCassetteCounters
@@ -450,139 +796,6 @@ const DataFile = {
             "Result": "0",
             "timestamp": "2025-04-21T16:37:00"
         }
-    ],
-
-    ///ATMDetailsController/GetReportDetails
-    ReportData: [
-        {
-            "LOGINID": "abasit01",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2023-08-21 00:00:00",
-            "LAST_PASSWORD_CHANGE": "2023-05-23 15:57:35",
-            "LAST_ACTIVE_STATUS": "2024-07-10 15:16:29",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "admin",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-04-16 15:38:37",
-            "LAST_PASSWORD_CHANGE": "2024-01-17 15:38:37",
-            "LAST_ACTIVE_STATUS": "2024-12-12 15:14:57",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "Admin123",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-02-15 20:17:38",
-            "LAST_PASSWORD_CHANGE": "2023-11-17 20:17:38",
-            "LAST_ACTIVE_STATUS": null,
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "admin2",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-03-13 18:26:21",
-            "LAST_PASSWORD_CHANGE": "2023-12-14 18:26:21",
-            "LAST_ACTIVE_STATUS": "2023-12-15 12:36:23",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "aed",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-05-01 15:50:14",
-            "LAST_PASSWORD_CHANGE": "2024-02-01 15:50:14",
-            "LAST_ACTIVE_STATUS": "2024-02-01 15:58:25",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "aislam",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": null,
-            "LAST_PASSWORD_CHANGE": "2024-07-25 14:21:04",
-            "LAST_ACTIVE_STATUS": "2024-10-11 17:30:14",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "Asultan",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2025-01-25 15:09:20",
-            "LAST_PASSWORD_CHANGE": "2024-10-18 15:09:20",
-            "LAST_ACTIVE_STATUS": null,
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "asurahio",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": null,
-            "LAST_PASSWORD_CHANGE": "2023-12-13 17:11:46",
-            "LAST_ACTIVE_STATUS": "2024-01-31 16:13:45",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "awahid",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2023-12-25 00:00:00",
-            "LAST_PASSWORD_CHANGE": "2023-10-18 12:53:07",
-            "LAST_ACTIVE_STATUS": "2024-07-30 16:53:17",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "DB",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-06-24 01:21:53",
-            "LAST_PASSWORD_CHANGE": "2024-03-26 01:21:53",
-            "LAST_ACTIVE_STATUS": "2024-03-26 01:21:58",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "erf",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-08-24 18:43:09",
-            "LAST_PASSWORD_CHANGE": "2024-07-24 18:43:09",
-            "LAST_ACTIVE_STATUS": null,
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "ery",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-02-12 13:23:44",
-            "LAST_PASSWORD_CHANGE": "2023-11-06 16:07:35",
-            "LAST_ACTIVE_STATUS": null,
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "gfh",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-02-12 16:41:58",
-            "LAST_PASSWORD_CHANGE": "2023-11-14 16:42:10",
-            "LAST_ACTIVE_STATUS": null,
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "hakram",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-06-03 16:18:36",
-            "LAST_PASSWORD_CHANGE": "2024-03-05 16:18:38",
-            "LAST_ACTIVE_STATUS": "2024-03-05 16:23:32",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "haroon",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-10-20 12:50:14",
-            "LAST_PASSWORD_CHANGE": "2024-07-22 12:50:14",
-            "LAST_ACTIVE_STATUS": "2024-08-01 18:51:32",
-            "STATUS": "UnLocked"
-        },
-        {
-            "LOGINID": "Hasnain",
-            "GROUPED": "user                ",
-            "PASSWORD_EXPIRE_DATE": "2024-02-12 13:23:44",
-            "LAST_PASSWORD_CHANGE": "2023-11-04 22:20:50",
-            "LAST_ACTIVE_STATUS": "2023-11-04 22:19:55",
-            "STATUS": "UnLocked"
-        },
-
     ],
 
     ///AlertsController/GetUserNotifications
@@ -854,14 +1067,56 @@ const DataFile = {
         }
     ],
 
+    // Keyed by DeviceID so Last Transaction matches the selected ATM.
     DemoFetchLastTransaction:{
-            "DeviceID": null,
-            "UserID": null,
-            "Trxn_type": "Withdrawal",
-            "Trxn_date": "3/18/2026",
-            "Trxn_time": "09:01:02 A.M.",
-            "Status": "Completed",
-        }
+        "ATM001": { "DeviceID": "ATM001", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/18/2026", "Trxn_time": "09:01:02 A.M.", "Status": "Completed" },
+        "ATM002": { "DeviceID": "ATM002", "UserID": null, "Trxn_type": "Balance Inquiry", "Trxn_date": "3/17/2026", "Trxn_time": "06:22:41 P.M.", "Status": "Completed" },
+        "ATM003": { "DeviceID": "ATM003", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/21/2026", "Trxn_time": "02:05:12 P.M.", "Status": "Completed" },
+        "ATM004": { "DeviceID": "ATM004", "UserID": null, "Trxn_type": "Deposit", "Trxn_date": "3/20/2026", "Trxn_time": "11:47:03 A.M.", "Status": "Failed" },
+        "ATM005": { "DeviceID": "ATM005", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/19/2026", "Trxn_time": "04:30:55 P.M.", "Status": "Completed" },
+        "ATM006": { "DeviceID": "ATM006", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/21/2026", "Trxn_time": "08:12:47 A.M.", "Status": "Failed" },
+        "ATM007": { "DeviceID": "ATM007", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/20/2026", "Trxn_time": "10:03:19 P.M.", "Status": "Failed" },
+        "ATM123456": { "DeviceID": "ATM123456", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/18/2026", "Trxn_time": "09:01:02 A.M.", "Status": "Completed" }
+    },
+
+    ///ReportsController/GetReportDetails (per report-type demo data, keyed by report title)
+    // Each key matches a card title in pages/Reports.js so a report actually shows data/columns relevant to its own title.
+    DemoReportDataByTitle: {
+        "Cash Outage": [
+            { "DeviceID": "ATM006", "BranchName": "Karachi", "OutageStart": "2026-03-21 08:12:47", "OutageEnd": null, "DurationMinutes": null, "Reason": "Cassette Empty" },
+            { "DeviceID": "ATM007", "BranchName": "Lahore", "OutageStart": "2026-03-20 22:03:19", "OutageEnd": "2026-03-21 06:15:00", "DurationMinutes": 491, "Reason": "Cassette Empty" },
+            { "DeviceID": "ATM005", "BranchName": "Karachi", "OutageStart": "2026-03-19 16:30:55", "OutageEnd": "2026-03-19 18:02:10", "DurationMinutes": 91, "Reason": "Low Cash Reject" }
+        ],
+        "Downtime": [
+            { "DeviceID": "ATM001", "BranchName": "Karachi", "DownStart": "2026-03-18 09:01:02", "DownEnd": null, "DurationMinutes": null, "Cause": "Link Down" },
+            { "DeviceID": "ATM002", "BranchName": "Lahore", "DownStart": "2026-03-17 18:22:41", "DownEnd": "2026-03-17 20:05:00", "DurationMinutes": 102, "Cause": "Link Down" }
+        ],
+        "Dispenser Outage": [
+            { "DeviceID": "ATM006", "BranchName": "Karachi", "OutageStart": "2026-03-21 08:12:47", "ErrorCode": "E-05", "Status": "Open" },
+            { "DeviceID": "ATM007", "BranchName": "Lahore", "OutageStart": "2026-03-20 22:03:19", "ErrorCode": "E-05", "Status": "Resolved" }
+        ],
+        "Power Outage": [
+            { "DeviceID": "ATM004", "BranchName": "Islamabad", "PowerFailTime": "2026-03-20 11:40:00", "PowerRestoreTime": "2026-03-20 12:15:00", "DurationMinutes": 35 },
+            { "DeviceID": "ATM003", "BranchName": "Karachi", "PowerFailTime": "2026-03-15 03:20:00", "PowerRestoreTime": "2026-03-15 03:52:00", "DurationMinutes": 32 }
+        ],
+        "Supervisory Mode": [
+            { "DeviceID": "ATM004", "BranchName": "Islamabad", "EnteredAt": "2026-03-20 11:47:03", "ExitedAt": null, "DurationMinutes": null },
+            { "DeviceID": "ATM005", "BranchName": "Karachi", "EnteredAt": "2026-03-19 16:30:55", "ExitedAt": "2026-03-19 17:10:00", "DurationMinutes": 39 }
+        ],
+        "Incident Escalation": [
+            { "DeviceID": "ATM123456", "IncidentID": "205500", "Classification": "Out of Cash", "EscalatedTo": "Field Engineer", "EscalatedAt": "2026-03-21T15:20:00", "Status": "Opened" },
+            { "DeviceID": "ATM123456", "IncidentID": "205504", "Classification": "Receipt Printer", "EscalatedTo": "Vendor Support", "EscalatedAt": "2026-03-26T13:45:00", "Status": "Opened" }
+        ],
+        "User Status": [
+            { "LOGINID": "abasit01", "GROUPED": "user", "PASSWORD_EXPIRE_DATE": "2023-08-21 00:00:00", "LAST_PASSWORD_CHANGE": "2023-05-23 15:57:35", "LAST_ACTIVE_STATUS": "2024-07-10 15:16:29", "STATUS": "UnLocked" },
+            { "LOGINID": "admin", "GROUPED": "user", "PASSWORD_EXPIRE_DATE": "2024-04-16 15:38:37", "LAST_PASSWORD_CHANGE": "2024-01-17 15:38:37", "LAST_ACTIVE_STATUS": "2024-12-12 15:14:57", "STATUS": "UnLocked" }
+        ],
+        "Last Transaction": [
+            { "DeviceID": "ATM001", "TrxnType": "Withdrawal", "TrxnDate": "3/18/2026", "TrxnTime": "09:01:02 A.M.", "Status": "Completed" },
+            { "DeviceID": "ATM003", "TrxnType": "Withdrawal", "TrxnDate": "3/21/2026", "TrxnTime": "02:05:12 P.M.", "Status": "Completed" },
+            { "DeviceID": "ATM004", "TrxnType": "Deposit", "TrxnDate": "3/20/2026", "TrxnTime": "11:47:03 A.M.", "Status": "Failed" }
+        ]
+    }
 }
 export default DataFile
 

@@ -294,14 +294,19 @@ const SelectedReports = () => {
     console.log("Generating report with data:", reportData);
     
     try {
-      
-       const data = DataFile.ReportData
+
+       const data = DataFile.DemoReportDataByTitle[title] || DataFile.DemoReportDataByTitle["User Status"]
+
+        const formatDisplayDate = (dateInput) =>
+          new Date(dateInput).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" });
+        const reportEndDate = formatDisplayDate(new Date());
+        const reportStartDate = formatDisplayDate(getSelectedDate());
 
         // Generate the report in the selected format (CSV or PDF)
         if (exportFormat === "CSV") {
           jsonToCSV(data, "_Complete");
         } else if (exportFormat === "PDF") {
-          generatePDF(data, "_Complete", "2025-04-21", "2025-04-21");
+          generatePDF(data, "_Complete", reportStartDate, reportEndDate);
         }
 
         // navigate("/SuccessScreen", {
@@ -368,7 +373,7 @@ const SelectedReports = () => {
 
       if (DataFile.Demo || response.data?.ResponseCode === "00") {
         
-        const reportDetails = DataFile.Demo? DataFile.ReportData : response.data.Data;
+        const reportDetails = DataFile.Demo? (DataFile.DemoReportDataByTitle[title] || DataFile.DemoReportDataByTitle["User Status"]) : response.data.Data;
         console.log("Report generated successfully:", reportDetails);
 
         const consolidatedData = [];

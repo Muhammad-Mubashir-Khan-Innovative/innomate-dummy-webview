@@ -19,6 +19,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { AppContext } from "../../context.js";
 import { useNavigate } from "react-router-dom";
+import { isOutOfService as isDeviceOutOfService } from "../../Utilities/outOfServiceStore";
 
 const ATMListcomponent = ({
   ShowStatusFilter,
@@ -129,13 +130,20 @@ const ATMListcomponent = ({
   };
 
   const OutOfServiceMachines = state.ATMList.filter((item) => {
-    const status = getStateFromPrio(item.Prio);
+    const status = getStateFromPrio(item.Prio) === "Out of Service" || isDeviceOutOfService(item.DeviceID);
     const matchHiername = hiername === "" || item.HierName === hiername;
-    return status === "Out of Service" && matchHiername;
+    return status && matchHiername;
   });
 
   const filteredItems = state.ATMList.filter((item) => {
-    const statuses = getStatusFromBit(item.Bit);
+    const locked = isDeviceOutOfService(item.DeviceID);
+    // A locked device is never "In Service" — that's mutually exclusive with
+    // Out of Service, unlike Supervisory/Linkdown/Out of Cash/Comp Down which
+    // can still additively apply based on the device's underlying Bit value.
+    const statuses = getStatusFromBit(item.Bit).filter(
+      (status) => !(locked && status === "In Service")
+    );
+    if (locked) statuses.push("Supervisory");
     const matchStatus = selected === "All" || statuses.includes(selected);
     const matchHiername =
       hiername === "All Location" ||

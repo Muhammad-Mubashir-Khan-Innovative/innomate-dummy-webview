@@ -129,7 +129,7 @@ function Login() {
       if (isBiometricEnable) {
         handleLoginSuccess();
       }
-     window.ReactNativeWebView.postMessage("true");
+     //window.ReactNativeWebView.postMessage("true");
     }
   }, [state.user]);
 
@@ -171,7 +171,7 @@ function Login() {
     setLoading(false);
     if (data.username === username && data.password === password ){
       console.log(data.username + " " + data.password)
-      setUser(DataFile.DemologinResponse);
+      setUser({ ...DataFile.DemologinResponse, LastLogin: new Date().toISOString() });
       sessionStorage.setItem("IsLoggedIn", "Y");
     }else{
       setErrorMxg("Incorrect Email Address or Password.");

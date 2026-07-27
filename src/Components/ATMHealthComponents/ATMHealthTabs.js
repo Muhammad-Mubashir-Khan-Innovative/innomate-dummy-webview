@@ -38,6 +38,7 @@ import { useEffect, useContext, useState } from "react";
 import apiRequest from "../../Utilities/apiUtility";
 import DataFile from "../../Utilities/DataFile.js";
 import { ContinuousColorLegend } from "@mui/x-charts";
+import { getEffectiveDeviceTabs } from "../../Utilities/outOfServiceStore";
 
 const arrayToObject = (arr) => {
   const obj = {};
@@ -134,7 +135,8 @@ const ATMHealthTabs = ({ ATMid }) => {
 
   const DemoGetATMDataAgainstUser = () => {
     setLoading(true);
-    const data = DataFile.DemoGetATMDataAgainstUser
+    const raw = DataFile.DemoGetATMDataAgainstUser[ATMid] || DataFile.DemoGetATMDataAgainstUser["ATM123456"]
+    const data = getEffectiveDeviceTabs(raw, ATMid);
     setATMs(data);
       if (data.length > 0) {
         const Tab1 = arrayToObject(data[0]);
@@ -152,7 +154,7 @@ const ATMHealthTabs = ({ ATMid }) => {
 
   const DemoFetchSystemInfo = () => {
     setLoading(true);
-    const data = DataFile.DemoFetchSystemInfo
+    const data = DataFile.DemoFetchSystemInfo[ATMid] || DataFile.DemoFetchSystemInfo["ATM123456"]
     const apiData = data;
     if (apiData.ATMID) {
       // This means the data is coming from the database, so use the record format
@@ -192,8 +194,8 @@ const ATMHealthTabs = ({ ATMid }) => {
 
   const DemoFetchLastTransaction = () => {
     setLoading(true);
-    const data = DataFile.DemoFetchLastTransaction
-    
+    const data = DataFile.DemoFetchLastTransaction[ATMid] || DataFile.DemoFetchLastTransaction["ATM123456"]
+
     const transformedData = {
       Type: data.Trxn_type,
       Time: data.Trxn_time,
