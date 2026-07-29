@@ -645,7 +645,7 @@ const CommandMenu = ({deviceid,bgcolor,height,width}) => {
                 variant="contained"
                 size="small"
               >
-                Locked
+                {`Out of Service (${outOfServiceRemaining}m)`}
               </Button>
             ) : (
               <Button

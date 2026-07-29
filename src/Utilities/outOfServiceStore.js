@@ -2,7 +2,7 @@
 // Persisted to localStorage so it survives the WebView app being backgrounded/closed
 // and reopened within the lockout window.
 const STORAGE_KEY = "demoOutOfServiceUntil";
-const LOCKOUT_DURATION_MS = 60 * 60 * 1000; // 1 hour
+const LOCKOUT_DURATION_MS = 10 * 60 * 1000; // 10 minutes
 
 const readMap = () => {
   try {

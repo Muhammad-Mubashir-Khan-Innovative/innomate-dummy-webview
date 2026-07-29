@@ -19,6 +19,7 @@ import Reports from "./pages/Reports.js";
 import Settings from "./pages/Settings.js";
 import SelectedReports from "./pages/SelectedReports.js";
 import ReportPage from "./pages/ReportPage.js";
+import DataFile from "./Utilities/DataFile.js";
 
 const theme = createTheme({
   typography: {
@@ -44,6 +45,11 @@ function App() {
     window.receivePlayerID = window.receivePlayerID || (() => {});
   }, []);
   React.useEffect(() => {
+    // No real backend in demo mode, so there's nothing to register a push
+    // notification player ID with — skip entirely to avoid a false
+    // "Notifications might not work" alert.
+    if (DataFile.Demo) return;
+
     // Create an interval to check every 5 seconds
     const intervalId = setInterval(() => {
       window.receivePlayerID = (PlayerID) => {

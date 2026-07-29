@@ -292,8 +292,13 @@ const SelectedReports = () => {
     };
 
     console.log("Generating report with data:", reportData);
-    
+
     try {
+       // The demo report generation below is effectively instant, which meant
+       // the loading spinner never got a chance to actually render (React
+       // batches the true/false state updates together). This small delay
+       // gives users a visible loading indicator during "download".
+       await new Promise((resolve) => setTimeout(resolve, 700));
 
        const data = DataFile.DemoReportDataByTitle[title] || DataFile.DemoReportDataByTitle["User Status"]
 

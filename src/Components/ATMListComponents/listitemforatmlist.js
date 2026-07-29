@@ -292,7 +292,7 @@ const ATMListitem = ({ deviceid, location, ShowDetailsButton, ShowCommandsButton
                       disabled
                       style={{ opacity: 0.5, cursor: 'not-allowed' }}
                     >
-                      {`Locked (${outOfServiceRemaining}m)`}
+                      {`Out of Service (${outOfServiceRemaining}m)`}
                     </button>
                   ) : (
                     <button
