@@ -28,17 +28,22 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-pzjw8f+ua7Kw1TIq0ub6rP+H+Xof0nWv3RU2U64JX1iV5nA8VbbgfF1w+0z8vcvs"
-      crossorigin="anonymous"
-    />
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Static fallback shown the instant the HTML parses, before the JS bundle
+        finishes downloading/executing. React overwrites this div automatically
+        once it mounts, so this never lingers once the app is actually ready —
+        it just replaces what would otherwise be a blank white screen in between.
+      -->
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;width:100vw;background:#F9FAFB;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+        <div style="width:36px;height:36px;border:3px solid #E4E6E9;border-top-color:#5F65FF;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -49,11 +54,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zyh1oK1M9W8fXW7cH2RsJ4Z5y5V6VkskUM4bd8dLk"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
