@@ -28,6 +28,8 @@ import { jsPDF } from "jspdf";
 import swal from "sweetalert";
 import DataFile from "../Utilities/DataFile.js";
 
+const SELECT_ALL_VALUE = "__SELECT_ALL__";
+
 const StyledBox = styled(Box)({
   //maxWidth: "400px",
   //width:"90%",
@@ -84,6 +86,21 @@ const SelectedReports = () => {
     setAssignedATMs(userAssignedATMs); // Set the assigned ATMs to state
     setLoading(false); // Set loading to false once data is fetched
   }, [state.ATMList, state.currentUserID]);
+
+  const isAllDevicesSelected =
+    assignedATMs.length > 0 &&
+    assignedATMs.every((atm) => atmDevices.includes(atm.DeviceID));
+
+  const handleDeviceSelectChange = (e) => {
+    const value = e.target.value;
+    if (value.includes(SELECT_ALL_VALUE)) {
+      setAtmDevices(
+        isAllDevicesSelected ? [] : assignedATMs.map((atm) => atm.DeviceID)
+      );
+      return;
+    }
+    setAtmDevices(value);
+  };
 
   // Convert the selected date option to an actual date
   const getSelectedDate = () => {
@@ -493,11 +510,11 @@ const SelectedReports = () => {
             <FormControl fullWidth>
               {/* <InputLabel id="atm-device-select-label">ATM Devices</InputLabel> */}
               <Select
-                
+
                 multiple
                 value={atmDevices} // This binds to the atmDevices state (which is an array)
-                
-                onChange={(e) => setAtmDevices(e.target.value)} // Ensure value is updated as an array
+
+                onChange={handleDeviceSelectChange} // Ensure value is updated as an array
                 size="small"
                 disabled={title === "User Status"} // Disable the dropdown for "user status report"
                 sx={{height: "50px", borderRadius:"10px"}}
@@ -505,11 +522,16 @@ const SelectedReports = () => {
                 {loading ? (
                   <MenuItem disabled>Loading...</MenuItem>
                 ) : assignedATMs.length > 0 ? (
-                  assignedATMs.map((atm) => (
-                    <MenuItem key={atm.DeviceID} value={atm.DeviceID}>
-                      {atm.BranchName} ({atm.DeviceID})
-                    </MenuItem>
-                  ))
+                  [
+                    <MenuItem key="__select_all__" value={SELECT_ALL_VALUE}>
+                      {isAllDevicesSelected ? "Deselect All" : "Select All"}
+                    </MenuItem>,
+                    ...assignedATMs.map((atm) => (
+                      <MenuItem key={atm.DeviceID} value={atm.DeviceID}>
+                        {atm.BranchName} ({atm.DeviceID})
+                      </MenuItem>
+                    )),
+                  ]
                 ) : (
                   <MenuItem disabled>No ATMs assigned</MenuItem>
                 )}

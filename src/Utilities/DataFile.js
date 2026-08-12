@@ -99,6 +99,30 @@ const DataFile = {
         "HierName": "Lahore",
         "CategoryText": "No Category Text",
         "DisplayOrder": 0
+    },
+    {
+        "DeviceID": "ATM008",
+        "BranchName": "Islamabad",
+        "DeviceBinState": null,
+        "IndicesOfOnes": "3",
+        "Bit": 3,
+        "Prio": 5,
+        "MessageText": "Card Reader Fault                                                                ",
+        "HierName": "Islamabad",
+        "CategoryText": "No Category Text",
+        "DisplayOrder": 0
+    },
+    {
+        "DeviceID": "ATM009",
+        "BranchName": "Lahore",
+        "DeviceBinState": null,
+        "IndicesOfOnes": "7",
+        "Bit": 7,
+        "Prio": null,
+        "MessageText": "Low Cash Warning                                                                ",
+        "HierName": "Lahore",
+        "CategoryText": "No Category Text",
+        "DisplayOrder": 0
     }
 ],
 
@@ -1089,7 +1113,16 @@ const DataFile = {
         ],
         "Downtime": [
             { "DeviceID": "ATM001", "BranchName": "Karachi", "DownStart": "2026-03-18 09:01:02", "DownEnd": null, "DurationMinutes": null, "Cause": "Link Down" },
-            { "DeviceID": "ATM002", "BranchName": "Lahore", "DownStart": "2026-03-17 18:22:41", "DownEnd": "2026-03-17 20:05:00", "DurationMinutes": 102, "Cause": "Link Down" }
+            { "DeviceID": "ATM002", "BranchName": "Lahore", "DownStart": "2026-03-17 18:22:41", "DownEnd": "2026-03-17 20:05:00", "DurationMinutes": 102, "Cause": "Link Down" },
+            { "DeviceID": "ATM003", "BranchName": "Karachi", "DownStart": "2026-03-19 11:14:20", "DownEnd": "2026-03-19 11:52:05", "DurationMinutes": 38, "Cause": "Card Reader" },
+            { "DeviceID": "ATM008", "BranchName": "Islamabad", "DownStart": "2026-03-20 14:05:10", "DownEnd": null, "DurationMinutes": null, "Cause": "Card Reader" },
+            { "DeviceID": "ATM009", "BranchName": "Lahore", "DownStart": "2026-03-16 07:40:00", "DownEnd": "2026-03-16 08:55:33", "DurationMinutes": 75, "Cause": "Card Reader" },
+            { "DeviceID": "ATM006", "BranchName": "Karachi", "DownStart": "2026-03-21 10:22:00", "DownEnd": "2026-03-21 11:47:00", "DurationMinutes": 85, "Cause": "Cash Dispenser" },
+            { "DeviceID": "ATM004", "BranchName": "Islamabad", "DownStart": "2026-03-15 13:10:45", "DownEnd": "2026-03-15 13:30:12", "DurationMinutes": 20, "Cause": "Journal Printer" },
+            { "DeviceID": "ATM005", "BranchName": "Karachi", "DownStart": "2026-03-14 09:05:00", "DownEnd": "2026-03-14 09:48:22", "DurationMinutes": 43, "Cause": "Receipt Printer" },
+            { "DeviceID": "ATM007", "BranchName": "Lahore", "DownStart": "2026-03-13 17:00:00", "DownEnd": null, "DurationMinutes": null, "Cause": "Host Communication Error" },
+            { "DeviceID": "ATM004", "BranchName": "Islamabad", "DownStart": "2026-03-12 08:30:00", "DownEnd": "2026-03-12 09:15:40", "DurationMinutes": 46, "Cause": "Supervisory Mode" },
+            { "DeviceID": "ATM007", "BranchName": "Lahore", "DownStart": "2026-03-20 22:03:19", "DownEnd": "2026-03-21 06:15:00", "DurationMinutes": 491, "Cause": "Out of Cash" }
         ],
         "Dispenser Outage": [
             { "DeviceID": "ATM006", "BranchName": "Karachi", "OutageStart": "2026-03-21 08:12:47", "ErrorCode": "E-05", "Status": "Open" },

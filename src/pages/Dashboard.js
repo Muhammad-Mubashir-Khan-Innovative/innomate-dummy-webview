@@ -470,6 +470,15 @@ function Dashboard() {
                   status={"Out of Cash"}
                   progressbarcolor={"#FFA84A"}
                 />
+                <CircularRangeWithTextLink
+                  min={0}
+                  max={state?.ATMList?.length}
+                  value={ATMListData?.filter((item) => item.Bit == 7)?.length}
+                  heading={"Low Cash"}
+                  text={"To View The Details, Click Here"}
+                  status={"Low Cash"}
+                  progressbarcolor={"#FFD966"}
+                />
               </Stack>
             </div>
            {/*    //Code for Pie chart  */}

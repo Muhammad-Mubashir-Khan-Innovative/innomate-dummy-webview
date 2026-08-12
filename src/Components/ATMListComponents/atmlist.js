@@ -91,6 +91,7 @@ const ATMListcomponent = ({
     Supervisory: "#5F65FF0F",
     "Out of Service": "#5F65FF0F",
     "Comp Down": "#5F65FF0F",
+    "Low Cash": "#5F65FF0F",
   };
 
   const handleSelect = (status, event) => {
@@ -116,6 +117,9 @@ const ATMListcomponent = ({
     }
     if (bit === 5) {
       statuses.push("Out of Cash");
+    }
+    if (bit === 7) {
+      statuses.push("Low Cash");
     }
     if (bit === null) {
       statuses.push("In Service");
@@ -234,6 +238,7 @@ const ATMListcomponent = ({
               "Linkdown",
               "Supervisory",
               "Out of Cash",
+              "Low Cash",
               "Comp Down",
             ].map((status) => {
               const displayText = (() => {
