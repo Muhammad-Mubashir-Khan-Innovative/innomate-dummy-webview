@@ -610,8 +610,13 @@ const DataFile = {
     },
 
     ///CommandExecutionController/GetCassetteCounters
-    DemoGetLiveCassetteCounters:
-    [
+    // Keyed by DeviceID so a device's cassette fill levels actually reflect its
+    // status (e.g. Out of Cash/Low Cash devices show low levels instead of the
+    // same generic healthy numbers as every other device). "ATM123456" is the
+    // fallback used for any device without a specific entry, matching the same
+    // convention as DemoGetATMDataAgainstUser.
+    DemoGetLiveCassetteCounters: {
+      "ATM123456": [
         "Cash Remaining1: 48000",
         "Denomination1: 500",
         "Reject1: 1",
@@ -632,7 +637,76 @@ const DataFile = {
         "Reject4: 0",
         "Filling Level4: 50",
         "Status4: Active"
-    ],
+      ],
+      // Out of Cash (Bit 5)
+      "ATM006": [
+        "Cash Remaining1: 0",
+        "Denomination1: 500",
+        "Reject1: 3",
+        "Filling Level1: 0",
+        "Status1: Empty",
+        "Cash Remaining2: 0",
+        "Denomination2: 1000",
+        "Reject2: 2",
+        "Filling Level2: 0",
+        "Status2: Empty",
+        "Cash Remaining3: 0",
+        "Denomination3: 1000",
+        "Reject3: 4",
+        "Filling Level3: 0",
+        "Status3: Empty",
+        "Cash Remaining4: 0",
+        "Denomination4: 5000",
+        "Reject4: 1",
+        "Filling Level4: 0",
+        "Status4: Empty"
+      ],
+      "ATM007": [
+        "Cash Remaining1: 0",
+        "Denomination1: 500",
+        "Reject1: 2",
+        "Filling Level1: 0",
+        "Status1: Empty",
+        "Cash Remaining2: 0",
+        "Denomination2: 1000",
+        "Reject2: 1",
+        "Filling Level2: 0",
+        "Status2: Empty",
+        "Cash Remaining3: 0",
+        "Denomination3: 1000",
+        "Reject3: 3",
+        "Filling Level3: 0",
+        "Status3: Empty",
+        "Cash Remaining4: 0",
+        "Denomination4: 5000",
+        "Reject4: 0",
+        "Filling Level4: 0",
+        "Status4: Empty"
+      ],
+      // Low Cash (Bit 7) — still operational, just running low
+      "ATM009": [
+        "Cash Remaining1: 4000",
+        "Denomination1: 500",
+        "Reject1: 1",
+        "Filling Level1: 8",
+        "Status1: Active",
+        "Cash Remaining2: 9000",
+        "Denomination2: 1000",
+        "Reject2: 0",
+        "Filling Level2: 5",
+        "Status2: Active",
+        "Cash Remaining3: 6000",
+        "Denomination3: 1000",
+        "Reject3: 1",
+        "Filling Level3: 12",
+        "Status3: Active",
+        "Cash Remaining4: 50000",
+        "Denomination4: 5000",
+        "Reject4: 0",
+        "Filling Level4: 10",
+        "Status4: Active"
+      ]
+    },
 
     ///JobController/GetJobsList
     DemoGetJobList:[

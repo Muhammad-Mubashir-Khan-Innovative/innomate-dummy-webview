@@ -126,7 +126,9 @@ const CassetteCounterTabs = ({ initialCounters, ATMid }) => {
   }, []);
 
   const DemoGetLiveCassetteCounters = () => {
-    const data = DataFile.DemoGetLiveCassetteCounters;
+    const data =
+      DataFile.DemoGetLiveCassetteCounters[ATMid] ||
+      DataFile.DemoGetLiveCassetteCounters["ATM123456"];
    // const resp = arrayToObject(data);
    // console.log("Demo Response: ", resp);
    // setCounter(resp);
