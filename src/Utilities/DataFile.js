@@ -544,6 +544,104 @@ const DataFile = {
                 "Supervisory Mode: 0 - Supervisory Mode                                                                "
             ]
         ],
+        "ATM008": [
+            [
+                "Name: ATM008",
+                "Branch Name: Islamabad",
+                "Location: Islamabad",
+                "Model No: Diebold Nixdorf Opteva 562",
+                "Status: Comp Down",
+                "Last Tnx Time: 2026-03-20 14:05:10"
+            ],
+            [
+                "Cash Remaining1: 40000",
+                "Denomination1: 500",
+                "Reject1: 0",
+                "Filling Level1: 32",
+                "Status1: Active",
+                "Cash Remaining2: 60000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 45",
+                "Status2: Active",
+                "Cash Remaining3: 150000",
+                "Denomination3: 5000",
+                "Reject3: 0",
+                "Filling Level3: 55",
+                "Status3: Active",
+                "Cash Remaining4: 20000",
+                "Denomination4: 1000",
+                "Reject4: 0",
+                "Filling Level4: 28",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 165 Stepping 5",
+                "Name: Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz",
+                "No Of Cores: 8",
+                "HDD Capacity: 1000204886016",
+                "Partitions: 4",
+                "MAC Address: 00-8A-9B-AC-BD-CE"
+            ],
+            [
+                "Card Reader: 1 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
+        ],
+        "ATM009": [
+            [
+                "Name: ATM009",
+                "Branch Name: Lahore",
+                "Location: Lahore",
+                "Model No: Wincor Nixdorf ProCash 285",
+                "Status: Low Cash",
+                "Last Tnx Time: 2026-03-16 07:40:00"
+            ],
+            [
+                "Cash Remaining1: 4000",
+                "Denomination1: 500",
+                "Reject1: 1",
+                "Filling Level1: 8",
+                "Status1: Active",
+                "Cash Remaining2: 9000",
+                "Denomination2: 1000",
+                "Reject2: 0",
+                "Filling Level2: 5",
+                "Status2: Active",
+                "Cash Remaining3: 6000",
+                "Denomination3: 1000",
+                "Reject3: 1",
+                "Filling Level3: 12",
+                "Status3: Active",
+                "Cash Remaining4: 50000",
+                "Denomination4: 5000",
+                "Reject4: 0",
+                "Filling Level4: 10",
+                "Status4: Active"
+            ],
+            [
+                "Description: Intel64 Family 6 Model 158 Stepping 10",
+                "Name: Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz",
+                "No Of Cores: 6",
+                "HDD Capacity: 250058792448",
+                "Partitions: 3",
+                "MAC Address: 00-9C-0D-1E-2F-30"
+            ],
+            [
+                "Card Reader: 0 - Card Reader                                                                     ",
+                "Cash Dispenser: 0 - Cash Dispenser                                                                  ",
+                "Host Communication Error: 0 - Host Communication Error                                                        ",
+                "Journal Printer: 0 - Journal Printer                                                                 ",
+                "Out of Cash: 0 - Out of Cash                                                                     ",
+                "Receipt Printer: 0 - Receipt Printer                                                                 ",
+                "Supervisory Mode: 0 - Supervisory Mode                                                                "
+            ]
+        ],
         "ATM123456": [
             [
                 "Name: ATM123456",
@@ -606,6 +704,8 @@ const DataFile = {
         "ATM005": { "ATMID": "ATM005", "Name": "Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-1A-2B-3C-4D-5E", "LastUpdated": "2026-03-19T16:35:00.00" },
         "ATM006": { "ATMID": "ATM006", "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-2C-3D-4E-5F-60", "LastUpdated": "2026-03-21T08:15:00.00" },
         "ATM007": { "ATMID": "ATM007", "Name": "Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz", "Description": "Intel64 Family 6 Model 158 Stepping 10", "NoofCores": 6, "HDDsize": "250058792448", "SerialNo": null, "Partition": "3", "MACAddress": "00-71-82-93-A4-B5", "LastUpdated": "2026-03-20T22:05:00.00" },
+        "ATM008": { "ATMID": "ATM008", "Name": "Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz", "Description": "Intel64 Family 6 Model 165 Stepping 5", "NoofCores": 8, "HDDsize": "1000204886016", "SerialNo": null, "Partition": "4", "MACAddress": "00-8A-9B-AC-BD-CE", "LastUpdated": "2026-03-20T14:05:10.00" },
+        "ATM009": { "ATMID": "ATM009", "Name": "Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz", "Description": "Intel64 Family 6 Model 158 Stepping 10", "NoofCores": 6, "HDDsize": "250058792448", "SerialNo": null, "Partition": "3", "MACAddress": "00-9C-0D-1E-2F-30", "LastUpdated": "2026-03-16T07:40:00.00" },
         "ATM123456": { "ATMID": "ATM123456", "Name": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz", "Description": "Intel64 Family 6 Model 94 Stepping 3", "NoofCores": 4, "HDDsize": "500105249280", "SerialNo": null, "Partition": "4", "MACAddress": "00-01-2E-A7-57-64", "LastUpdated": "2025-02-27T16:58:37.23" }
     },
 
@@ -682,6 +782,29 @@ const DataFile = {
         "Reject4: 0",
         "Filling Level4: 0",
         "Status4: Empty"
+      ],
+      // Comp Down (Card Reader fault) — cash levels are normal, the failure is mechanical
+      "ATM008": [
+        "Cash Remaining1: 40000",
+        "Denomination1: 500",
+        "Reject1: 0",
+        "Filling Level1: 32",
+        "Status1: Active",
+        "Cash Remaining2: 60000",
+        "Denomination2: 1000",
+        "Reject2: 0",
+        "Filling Level2: 45",
+        "Status2: Active",
+        "Cash Remaining3: 150000",
+        "Denomination3: 5000",
+        "Reject3: 0",
+        "Filling Level3: 55",
+        "Status3: Active",
+        "Cash Remaining4: 20000",
+        "Denomination4: 1000",
+        "Reject4: 0",
+        "Filling Level4: 28",
+        "Status4: Active"
       ],
       // Low Cash (Bit 7) — still operational, just running low
       "ATM009": [
@@ -1174,6 +1297,8 @@ const DataFile = {
         "ATM005": { "DeviceID": "ATM005", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/19/2026", "Trxn_time": "04:30:55 P.M.", "Status": "Completed" },
         "ATM006": { "DeviceID": "ATM006", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/21/2026", "Trxn_time": "08:12:47 A.M.", "Status": "Failed" },
         "ATM007": { "DeviceID": "ATM007", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/20/2026", "Trxn_time": "10:03:19 P.M.", "Status": "Failed" },
+        "ATM008": { "DeviceID": "ATM008", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/20/2026", "Trxn_time": "02:05:10 P.M.", "Status": "Failed" },
+        "ATM009": { "DeviceID": "ATM009", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/16/2026", "Trxn_time": "07:40:00 A.M.", "Status": "Completed" },
         "ATM123456": { "DeviceID": "ATM123456", "UserID": null, "Trxn_type": "Withdrawal", "Trxn_date": "3/18/2026", "Trxn_time": "09:01:02 A.M.", "Status": "Completed" }
     },
 
